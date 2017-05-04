@@ -14,7 +14,7 @@ namespace AppMain
             bool showFiles = false;
             int tab = 4;
             bool is437 = true;
-            bool isNaturalSort = true;
+            bool isNaturalSort = false;
             ViewFormat viewFormat = ViewFormat.Text;
             string err = null;
 
@@ -30,10 +30,10 @@ namespace AppMain
                     is437 = false;
                 else if (arg == "/F")
                     showFiles = true;
+                else if (arg == "/N")
+                    isNaturalSort = true;
                 else if (arg == "/W")
                     viewFormat = ViewFormat.Html;
-                else if (arg == "/X")
-                    isNaturalSort = false;
                 else if (arg == "/2")
                     tab = 2;
                 else if (arg.StartsWith ("/"))
@@ -85,7 +85,7 @@ namespace AppMain
             Console.WriteLine ("   /F   Display the names of the files in each folder.");
             Console.WriteLine ("   /A   Use ASCII instead of extended characters.");
             Console.WriteLine ("   /W   Produce output suitable for a static HTML web page.");
-            Console.WriteLine ("   /X   Sort results lexically rather than naturally.");
+            Console.WriteLine ("   /N   Use natural sort rather than lexical sort.");
             Console.WriteLine ("   /2   Indent by 2 instead of 4.");
         }
     }
