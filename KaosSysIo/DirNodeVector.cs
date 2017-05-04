@@ -54,6 +54,7 @@ namespace Kaos.SysIo
             public bool HasSubdirs { get { return Depth+1 < items.Count && items[Depth+1].dirInfos.Length > 0; } }
             public string TreeName { get { return items.Count == 1 ? RootPath : items[items.Count-1].Name; } }
 
+
             protected Vector (string rootPath, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4)
             {
                 this.items = new List<DirNode> { new DirNode (new DirectoryInfo[] { new DirectoryInfo (rootPath) }, -1) };
@@ -67,9 +68,15 @@ namespace Kaos.SysIo
                 { this.UpDown = '|'; this.LeftRight = '-'; this.UpRight = '\\'; this.UpDownRight = '+'; }
 
                 if (order == Ordering.Lexical)
-                { this.dirComparer = LexicalCompareDirectoryInfo.Comparer; this.fileComparer = LexicalCompareFileInfo.Comparer; }
+                {
+                    this.dirComparer = SafeNativeMethods.LexicalCompareDirectoryInfo.Comparer;
+                    this.fileComparer = SafeNativeMethods.LexicalCompareFileInfo.Comparer;
+                }
                 else if (order == Ordering.Natural)
-                { this.dirComparer = NaturalCompareDirectoryInfo.Comparer; this.fileComparer = NaturalCompareFileInfo.Comparer; }
+                {
+                    this.dirComparer = SafeNativeMethods.NaturalCompareDirectoryInfo.Comparer;
+                    this.fileComparer = SafeNativeMethods.NaturalCompareFileInfo.Comparer;
+                }
             }
 
 
