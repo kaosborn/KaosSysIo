@@ -9,25 +9,35 @@ namespace AppMain
         public static StringBuilder AppendHtml (this StringBuilder sb, string source)
         {
             foreach (char ch in source)
-                if (ch == '"')
-                    sb.Append ("&quot;");
-                else if (ch == '&')
-                    sb.Append ("&amp;");
-                else if (ch == '\'')
-                    sb.Append ("&apos;");
-                else if (ch == '<')
-                    sb.Append ("&lt;");
-                else if (ch == '>')
-                    sb.Append ("&gt;");
-                else
-                    sb.Append (ch);
+            {
+                if (ch <= '>')
+                    if (ch == '>')
+                        sb.Append ("&gt;");
+                    else if (ch == '<')
+                        sb.Append ("&lt;");
+                    else if (ch == '\'')
+                        sb.Append ("&apos;");
+                    else if (ch == '&')
+                        sb.Append ("&amp;");
+                    else if (ch == '"')
+                        sb.Append ("&quot;");
+
+                sb.Append (ch);
+            }
 
             return sb;
         }
+    }
 
 
-        public static IEnumerable<string> TraverseForHtmlTree (this DirNode.Vector dv, string rootPath, bool showFiles=false)
+    public class DirVectorHtml : DirNode.Vector
+    {
+        private DirVectorHtml (string rootPath, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4) : base (rootPath, order, drawWith, tabSize)
+        { }
+
+        public static IEnumerable<string> GenerateHtmlTree (string rootPath, bool showFiles=false, DrawWith drawWith=DrawWith.Graphic, Ordering order=Ordering.None, int tab=4)
         {
+            var dv = new DirVectorHtml (rootPath, order, drawWith, tab);
             int buttonId = 0;
 
             yield return ("<!DOCTYPE html>");

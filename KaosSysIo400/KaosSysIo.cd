@@ -14,14 +14,15 @@
       <Class Name="Kaos.SysIo.DirNode.Vector">
         <Members>
           <Method Name="Advance" Hidden="true" />
-          <Method Name="Create" Hidden="true" />
-          <Method Name="CreateGraphic" Hidden="true" />
+          <Field Name="dirComparer" Hidden="true" />
+          <Method Name="EnumerateDirectories" Hidden="true" />
+          <Method Name="EnumerateDirectoriesForInfo" Hidden="true" />
+          <Method Name="EnumerateFiles" Hidden="true" />
+          <Field Name="fileComparer" Hidden="true" />
+          <Method Name="GenerateTextTree" Hidden="true" />
           <Field Name="items" Hidden="true" />
           <Method Name="PregetContents" Hidden="true" />
           <Method Name="Reset" Hidden="true" />
-          <Method Name="TraverseForInfo" Hidden="true" />
-          <Method Name="TraverseForPath" Hidden="true" />
-          <Method Name="TraverseForTextTree" Hidden="true" />
           <Method Name="Vector" Hidden="true" />
         </Members>
         <TypeIdentifier>

@@ -7,7 +7,10 @@ using System.Text;
 
 namespace Kaos.SysIo
 {
-   /// <summary>
+    public enum Ordering { None, Lexical, Natural }
+    public enum DrawWith { Ascii, Graphic }
+
+    /// <summary>
     /// A single directory node with its index in its parent's subdirs.
     /// Root is always Index 0 of 1 FileInfo.
     /// </summary>
@@ -36,11 +39,12 @@ namespace Kaos.SysIo
             private readonly IList<DirNode> items;
             public ReadOnlyCollection<DirNode> Items { get; private set; }
 
+            private readonly IComparer<DirectoryInfo> dirComparer=null;
+            private readonly IComparer<FileInfo> fileComparer=null;
+
             public string RootPath { get; private set; }
             public int Depth { get; private set; }
-
             public int TabSize { get; private set; }
-            public bool IsNaturalSort { get; private set; }
             public char UpDown { get; private set; }
             public char LeftRight { get; private set; }
             public char UpRight { get; private set; }
@@ -50,35 +54,28 @@ namespace Kaos.SysIo
             public bool HasSubdirs { get { return Depth+1 < items.Count && items[Depth+1].dirInfos.Length > 0; } }
             public string TreeName { get { return items.Count == 1 ? RootPath : items[items.Count-1].Name; } }
 
-            private Vector()
+            protected Vector (string rootPath, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4)
             {
-                this.items = new List<DirNode>();
+                this.items = new List<DirNode> { new DirNode (new DirectoryInfo[] { new DirectoryInfo (rootPath) }, -1) };
                 this.Items = new ReadOnlyCollection<DirNode> (items);
-                Depth = -1;
-            }
-
-            private Vector (string rootPath, int tabSize, bool isNaturalSort, char upDown, char leftRight, char upRight, char upDownRight) : this()
-            {
-                this.items.Add (new DirNode (new DirectoryInfo[] { new DirectoryInfo (rootPath) }, -1));
-
+                this.Depth = -1;
                 this.TabSize = tabSize;
-                this.IsNaturalSort = isNaturalSort;
-                this.UpDown = upDown;
-                this.LeftRight = leftRight;
-                this.UpRight = upRight;
-                this.UpDownRight = upDownRight;
+
+                if (drawWith == DrawWith.Graphic)
+                { this.UpDown = '\u2502'; this.LeftRight = '\u2500'; this.UpRight = '\u2514'; this.UpDownRight = '\u251C'; }
+                else
+                { this.UpDown = '|'; this.LeftRight = '-'; this.UpRight = '\\'; this.UpDownRight = '+'; }
+
+                if (order == Ordering.Lexical)
+                { this.dirComparer = LexicalCompareDirectoryInfo.Comparer; this.fileComparer = LexicalCompareFileInfo.Comparer; }
+                else if (order == Ordering.Natural)
+                { this.dirComparer = NaturalCompareDirectoryInfo.Comparer; this.fileComparer = NaturalCompareFileInfo.Comparer; }
             }
-
-            public static Vector Create (string rootPath, int tabSize=4, bool isNaturalSort=true)
-            { return new Vector (rootPath, tabSize, isNaturalSort, '|', '-', '\\', '+'); }
-
-            public static Vector CreateGraphic (string rootPath, int tabSize=4, bool isNaturalSort=true)
-            { return new Vector (rootPath, tabSize, isNaturalSort, '\u2502', '\u2500', '\u2514', '\u251C'); }
 
 
             // On exit: returns true if node has subdirectories or files (if includeFiles)
             // Any subdirectories will be prefetched.
-            public bool PregetContents (bool includeFiles)
+            protected bool PregetContents (bool includeFiles)
             {
                 bool result;
                 var top = items[items.Count - 1];
@@ -90,7 +87,8 @@ namespace Kaos.SysIo
                 else
                 {
                     DirectoryInfo[] nextDirs = top.dirInfos[top.Index].GetDirectories();
-                    Array.Sort (nextDirs, IsNaturalSort? NaturalCompareDirectoryInfo.Comparer : LexicalCompareDirectoryInfo.Comparer);
+                    if (dirComparer != null)
+                        Array.Sort (nextDirs, dirComparer);
                     items.Add (new DirNode (nextDirs, -1));
                     result = nextDirs.Length > 0;
                 }
@@ -98,8 +96,8 @@ namespace Kaos.SysIo
                 if (includeFiles)
                 {
                     FileInfo[] fInfos = top.dirInfos[top.Index].GetFiles();
-                    IComparer<FileInfo> cfi = IsNaturalSort? NaturalCompareFileInfo.Comparer : LexicalCompareFileInfo.Comparer;
-                    Array.Sort (fInfos, cfi);
+                    if (fileComparer != null)
+                        Array.Sort (fInfos, fileComparer);
                     top.FileInfos = new ReadOnlyCollection<FileInfo> (fInfos);
                     result = result || top.FileInfos.Count > 0;
                 }
@@ -119,7 +117,7 @@ namespace Kaos.SysIo
             }
 
 
-            public bool Advance()
+            protected bool Advance()
             {
                 if (items.Count == 0)
                     return false;
@@ -130,7 +128,8 @@ namespace Kaos.SysIo
                     DirectoryInfo[] subdirs = top.dirInfos[top.Index].GetDirectories();
                     if (subdirs.Length > 0)
                     {
-                        Array.Sort (subdirs, IsNaturalSort? NaturalCompareDirectoryInfo.Comparer : LexicalCompareDirectoryInfo.Comparer);
+                        if (dirComparer != null)
+                            Array.Sort (subdirs, dirComparer);
                         Depth = items.Count;
                         items.Add (new DirNode (subdirs, 0));
                         return true;
@@ -151,39 +150,49 @@ namespace Kaos.SysIo
             }
 
 
-            public static IEnumerable<string> TraverseForPath (string rootPath)
+            public static IEnumerable<string> EnumerateFiles (string rootPath, Ordering order=Ordering.None)
             {
-                var nodes = DirNode.Vector.Create (rootPath);
-                while (nodes.Advance())
-                    yield return nodes.Top.Path;
-            }
-
-
-            public static IEnumerable<DirectoryInfo> TraverseForInfo (string rootPath)
-            {
-                var nodes = DirNode.Vector.Create (rootPath);
-                while (nodes.Advance())
-                    yield return nodes.Top.dirInfos[nodes.Top.Index];
-            }
-
-
-            public IEnumerable<string> TraverseForTextTree (string rootPath, bool showFiles=false)
-            {
-                for (var sb = new StringBuilder(); Advance(); sb.Clear())
+                for (var dv = new DirNode.Vector (rootPath, order); dv.Advance();)
                 {
-                    sb.AppendIndent (this, false);
-                    sb.Append (Top.Name);
+                    dv.PregetContents (true);
+                    foreach (var fInfo in dv.Top.FileInfos)
+                        yield return fInfo.FullName;
+                }
+            }
+
+
+            public static IEnumerable<string> EnumerateDirectories (string rootPath, Ordering order=Ordering.None)
+            {
+                for (var dv = new DirNode.Vector (rootPath, order); dv.Advance();)
+                    yield return dv.Top.Path;
+            }
+
+
+            public static IEnumerable<DirectoryInfo> EnumerateDirectoriesForInfo (string rootPath, Ordering order=Ordering.None)
+            {
+                for (var dv = new DirNode.Vector (rootPath, order); dv.Advance();)
+                    yield return dv.Top.dirInfos[dv.Top.Index];
+            }
+
+
+            public static IEnumerable<string> GenerateTextTree (string rootPath, bool showFiles=false, DrawWith viewChars=DrawWith.Graphic, Ordering order=Ordering.None, int tab=4)
+            {
+                var sb = new StringBuilder();
+                for (var dv = new DirNode.Vector (rootPath, order); dv.Advance(); sb.Clear())
+                {
+                    sb.AppendIndent (dv, false);
+                    sb.Append (dv.Top.Path);
                     yield return sb.ToString();
 
                     if (showFiles)
                     {
-                        PregetContents (true);
-                        if (Top.FileInfos.Count > 0)
+                        dv.PregetContents (true);
+                        if (dv.Top.FileInfos.Count > 0)
                         {
                             sb.Clear();
-                            sb.AppendIndent (this, showFiles);
+                            sb.AppendIndent (dv, showFiles);
                             int indentLength = sb.Length;
-                            foreach (var fInfo in Top.FileInfos)
+                            foreach (var fInfo in dv.Top.FileInfos)
                             {
                                 sb.Append (fInfo.Name);
                                 yield return sb.ToString();

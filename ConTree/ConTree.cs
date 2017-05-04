@@ -4,19 +4,19 @@ using Kaos.SysIo;
 
 namespace AppMain
 {
-    enum ViewFormat { Text, Html }
+    enum TargetInterface { Terminal, Browser }
 
     class ConTree
     {
         static int Main (string[] args)
         {
+            string err = null;
             string rootPath = null;
             bool showFiles = false;
             int tab = 4;
-            bool is437 = true;
-            bool isNaturalSort = false;
-            ViewFormat viewFormat = ViewFormat.Text;
-            string err = null;
+            TargetInterface target = TargetInterface.Terminal;
+            DrawWith drawWith = DrawWith.Graphic;
+            Ordering ordering = Ordering.None;
 
             for (int ix = 0; ix < args.Length; ++ix)
             {
@@ -27,13 +27,15 @@ namespace AppMain
                     return 0;
                 }
                 else if (arg == "/A")
-                    is437 = false;
+                    drawWith = DrawWith.Ascii;
                 else if (arg == "/F")
                     showFiles = true;
-                else if (arg == "/N")
-                    isNaturalSort = true;
+                else if (arg == "/SL")
+                    ordering = Ordering.Lexical;
+                else if (arg == "/SN")
+                    ordering = Ordering.Natural;
                 else if (arg == "/W")
-                    viewFormat = ViewFormat.Html;
+                    target = TargetInterface.Browser;
                 else if (arg == "/2")
                     tab = 2;
                 else if (arg.StartsWith ("/"))
@@ -49,14 +51,11 @@ namespace AppMain
 
             try
             {
-                DirNode.Vector nodes = is437? DirNode.Vector.CreateGraphic (rootPath, tab, isNaturalSort)
-                                            : DirNode.Vector.Create (rootPath, tab, isNaturalSort);
-
-                if (viewFormat == ViewFormat.Text)
-                    foreach (string lx in nodes.TraverseForTextTree (rootPath, showFiles))
+                if (target == TargetInterface.Terminal)
+                    foreach (string lx in DirNode.Vector.GenerateTextTree (rootPath, showFiles, drawWith, ordering, tab))
                         Console.WriteLine (lx);
                 else
-                    foreach (string lx in nodes.TraverseForHtmlTree (rootPath, showFiles))
+                    foreach (string lx in DirVectorHtml.GenerateHtmlTree (rootPath, showFiles, drawWith, ordering, tab))
                         Console.WriteLine (lx);
             }
             catch (IOException ex)
@@ -66,7 +65,7 @@ namespace AppMain
 
             if (err != null)
             {
-                Console.WriteLine (err);
+                Console.Error.WriteLine (err);
                 return 1;
             }
 
@@ -80,12 +79,13 @@ namespace AppMain
 
             Console.WriteLine ("Graphically displays the folder structure of a drive or path.");
             Console.WriteLine ();
-            Console.WriteLine (exe + " [drive:][path] [/F] [/A] [/W] [/X] [/2]");
+            Console.WriteLine (exe + " [drive:][path] [/F] [/A] [/W] [/SL] [/SN] [/2]");
             Console.WriteLine ();
             Console.WriteLine ("   /F   Display the names of the files in each folder.");
             Console.WriteLine ("   /A   Use ASCII instead of extended characters.");
             Console.WriteLine ("   /W   Produce output suitable for a static HTML web page.");
-            Console.WriteLine ("   /N   Use natural sort rather than lexical sort.");
+            Console.WriteLine ("   /SL  Sort lexically.");
+            Console.WriteLine ("   /SN  Sort naturally.");
             Console.WriteLine ("   /2   Indent by 2 instead of 4.");
         }
     }
