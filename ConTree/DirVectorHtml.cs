@@ -6,7 +6,7 @@ namespace AppMain
 {
     public class DirVectorHtml : DirNode.Vector
     {
-        private DirVectorHtml (string rootPath, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4) : base (rootPath, order, drawWith, tabSize)
+        private DirVectorHtml (string rootPath, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4) : base (rootPath, null, null, order, drawWith, tabSize)
         { }
 
         public static IEnumerable<string> GenerateHtmlTree (string rootPath, bool showFiles=false, DrawWith drawWith=DrawWith.Graphic, Ordering order=Ordering.None, int tab=4)
