@@ -6,10 +6,10 @@ namespace AppMain
 {
     public class DirVectorHtml : DirNode.Vector
     {
-        private DirVectorHtml (string rootPath, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4) : base (rootPath, null, null, order, drawWith, tabSize)
+        private DirVectorHtml (string rootPath, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4) : base (rootPath, null, order, drawWith, tabSize)
         { }
 
-        public static IEnumerable<string> GenerateHtmlTree (string rootPath, bool showFiles=false, DrawWith drawWith=DrawWith.Graphic, Ordering order=Ordering.None, int tab=4)
+        public static IEnumerable<string> GenerateHtmlTree (string rootPath, string fileFilter, DrawWith drawWith=DrawWith.Graphic, Ordering order=Ordering.None, int tab=4)
         {
             var dv = new DirVectorHtml (rootPath, order, drawWith, tab);
             int buttonId = 0;
@@ -48,11 +48,11 @@ namespace AppMain
             yield return sb.ToString();
             sb.Clear();
 
-            for (bool hasSubdirsOrFiles = dv.PregetContents (showFiles);;)
+            for (bool hasSubdirsOrFiles = dv.PregetContents (fileFilter);;)
             {
                 if (hasSubdirsOrFiles && dv.Top.FileInfos != null && dv.Top.FileInfos.Count > 0)
                 {
-                    string indent = new StringBuilder().AppendIndent (dv, showFiles).ToString();
+                    string indent = new StringBuilder().AppendIndent (dv, fileFilter != null).ToString();
                     sb.Append (indent);
                     sb.AppendHtml (dv.Top.FileInfos[0].Name);
                     yield return sb.ToString();
@@ -81,7 +81,7 @@ namespace AppMain
                 if (! dv.Advance())
                     break;
 
-                hasSubdirsOrFiles = dv.PregetContents (showFiles);
+                hasSubdirsOrFiles = dv.PregetContents (fileFilter);
                 if (! hasSubdirsOrFiles)
                 {
                     sb.AppendIndent (dv, false);

@@ -12,7 +12,7 @@ namespace AppMain
         {
             string err = null;
             string rootPath = null;
-            bool showFiles = false;
+            string fileFilter = null;
             int tab = 4;
             TargetInterface target = TargetInterface.Terminal;
             DrawWith drawWith = DrawWith.Graphic;
@@ -29,17 +29,21 @@ namespace AppMain
                 else if (arg == "/A")
                     drawWith = DrawWith.Ascii;
                 else if (arg == "/F")
-                    showFiles = true;
+                    fileFilter = "*";
                 else if (arg == "/SL")
                     ordering = Ordering.Lexical;
                 else if (arg == "/SN")
                     ordering = Ordering.Natural;
                 else if (arg == "/W")
                     target = TargetInterface.Browser;
-                else if (arg == "/2")
-                    tab = 2;
                 else if (arg.StartsWith ("/"))
-                { Console.WriteLine ("Invalid switch - " + args[ix]); return 1; }
+                {
+                    bool isOk = Int32.TryParse (arg.Substring (1), out int tryTab);
+                    if (isOk && tryTab > 0)
+                        tab = tryTab;
+                    else
+                    { Console.WriteLine ("Invalid switch - " + args[ix]); return 1; }
+                }
                 else if (rootPath != null)
                 { Console.WriteLine ("Too many parameters - " + args[ix]); return 2; }
                 else
@@ -52,10 +56,10 @@ namespace AppMain
             try
             {
                 if (target == TargetInterface.Terminal)
-                    foreach (string lx in DirNode.Vector.GenerateTextTree (rootPath, showFiles, drawWith, ordering, tab))
+                    foreach (string lx in DirNode.Vector.GenerateTextTree (rootPath, fileFilter, drawWith, ordering, tab))
                         Console.WriteLine (lx);
                 else
-                    foreach (string lx in DirVectorHtml.GenerateHtmlTree (rootPath, showFiles, drawWith, ordering, tab))
+                    foreach (string lx in DirVectorHtml.GenerateHtmlTree (rootPath, fileFilter, drawWith, ordering, tab))
                         Console.WriteLine (lx);
             }
             catch (IOException ex)
@@ -79,14 +83,14 @@ namespace AppMain
 
             Console.WriteLine ("Graphically displays the folder structure of a drive or path.");
             Console.WriteLine ();
-            Console.WriteLine (exe + " [drive:][path] [/F] [/A] [/W] [/SL] [/SN] [/2]");
+            Console.WriteLine (exe + " [drive:][path] [/F] [/A] [/W] [/SL] [/SN] [/n]");
             Console.WriteLine ();
             Console.WriteLine ("   /F   Display the names of the files in each folder.");
             Console.WriteLine ("   /A   Use ASCII instead of extended characters.");
             Console.WriteLine ("   /W   Produce output suitable for a static HTML web page.");
             Console.WriteLine ("   /SL  Sort lexically.");
             Console.WriteLine ("   /SN  Sort naturally.");
-            Console.WriteLine ("   /2   Indent by 2 instead of 4.");
+            Console.WriteLine ("   /n   Indent by n where n is a number.");
         }
     }
 }
