@@ -45,11 +45,6 @@
     <Compile Include="ConTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\KaosSysIo400\KaosSysIo400.csproj">
-      <Project>{35e4a60d-1a16-4f46-bec0-3c676a601dde}</Project>
-      <Name>KaosSysIo400</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <Import Project="..\KaosSysIo\KaosSysIo.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

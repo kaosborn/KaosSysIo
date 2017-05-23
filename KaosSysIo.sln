@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConTree", "ConTree\ConTree.csproj", "{E8A67EDC-0D77-4FFB-97FB-1CB8EAA9E1C1}"
 EndProject
@@ -15,6 +15,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		KaosSysIo\KaosSysIo.projitems*{35e4a60d-1a16-4f46-bec0-3c676a601dde}*SharedItemsImports = 4
 		KaosSysIo\KaosSysIo.projitems*{481bbf3a-6cb0-4db0-a0e4-549da43d7dac}*SharedItemsImports = 13
+		KaosSysIo\KaosSysIo.projitems*{e8a67edc-0d77-4ffb-97fb-1cb8eaa9e1c1}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
