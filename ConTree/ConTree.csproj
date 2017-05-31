@@ -45,6 +45,6 @@
     <Compile Include="ConTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\KaosSysIo\KaosSysIo.projitems" Label="Shared" />
+  <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

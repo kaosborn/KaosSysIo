@@ -3,14 +3,14 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>481bbf3a-6cb0-4db0-a0e4-549da43d7dac</SharedGUID>
+    <SharedGUID>fbcaf54f-e3fc-4202-8be4-f93bda1ee1c4</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>KaosSysIo</Import_RootNamespace>
+    <Import_RootNamespace>DirNode</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)DirNodeVector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Comparers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DirNodeVector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
   </ItemGroup>
 </Project>

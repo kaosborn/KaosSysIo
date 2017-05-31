@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{35E4A60D-1A16-4F46-BEC0-3C676A601DDE}</ProjectGuid>
+    <ProjectGuid>{BF8FC0C2-5723-4449-9786-3E16DD230613}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KaosSysIo400</RootNamespace>
-    <AssemblyName>KaosSysIo400</AssemblyName>
+    <RootNamespace>SysIo400</RootNamespace>
+    <AssemblyName>SysIo400</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,9 +41,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="KaosSysIo.cd" />
-  </ItemGroup>
-  <Import Project="..\KaosSysIo\KaosSysIo.projitems" Label="Shared" />
+  <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

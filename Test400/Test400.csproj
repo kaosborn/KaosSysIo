@@ -58,12 +58,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KaosSysIo400\KaosSysIo400.csproj">
-      <Project>{35E4A60D-1A16-4F46-BEC0-3C676A601DDE}</Project>
-      <Name>KaosSysIo400</Name>
+    <ProjectReference Include="..\SysIo400\SysIo400.csproj">
+      <Project>{bf8fc0c2-5723-4449-9786-3e16dd230613}</Project>
+      <Name>SysIo400</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Targets\D1\12.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
