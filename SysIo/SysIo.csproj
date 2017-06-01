@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <Version>0.2.0</Version>
+    <PackageId>Kaos.SysIo</PackageId>
+    <Product>KaosSysIo</Product>
+    <Authors>Kasey O.</Authors>
+    <Description>Directory walker</Description>
+    <RepositoryUrl>https://github.com/kaosborn/KaosSysIo.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageProjectUrl>https://github.com/kaosborn/KaosSysIo</PackageProjectUrl>
+    <Company>github.com/kaosborn</Company>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
+    <AssemblyName>KaosSysIo</AssemblyName>
+    <RootNamespace>Kaos.SysIo</RootNamespace>
+    <Copyright>Copyright © github.com/kaosborn 2009-2017</Copyright>
+    <PackageReleaseNotes>Freeware.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />
+
+</Project>

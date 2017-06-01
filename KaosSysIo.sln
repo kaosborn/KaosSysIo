@@ -11,6 +11,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DirNode", "DirNode\DirNode.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysIo400", "SysIo400\SysIo400.csproj", "{BF8FC0C2-5723-4449-9786-3E16DD230613}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysIo", "SysIo\SysIo.csproj", "{508C6FD2-F878-4F55-B3CF-36886A98F767}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		DirNode\DirNode.projitems*{bf8fc0c2-5723-4449-9786-3e16dd230613}*SharedItemsImports = 4
@@ -34,6 +36,10 @@ Global
 		{BF8FC0C2-5723-4449-9786-3E16DD230613}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF8FC0C2-5723-4449-9786-3E16DD230613}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF8FC0C2-5723-4449-9786-3E16DD230613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{508C6FD2-F878-4F55-B3CF-36886A98F767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{508C6FD2-F878-4F55-B3CF-36886A98F767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{508C6FD2-F878-4F55-B3CF-36886A98F767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{508C6FD2-F878-4F55-B3CF-36886A98F767}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
