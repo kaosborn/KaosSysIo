@@ -174,14 +174,14 @@ namespace Kaos.SysIo
             }
 
 
-            public static IEnumerable<string> EnumerateDirectories (string rootPath, string filter, Ordering order=Ordering.None)
+            public static IEnumerable<string> EnumerateDirectories (string rootPath, string filter=null, Ordering order=Ordering.None)
             {
                 for (var dv = new DirNode.Vector (rootPath, filter, order); dv.Advance();)
                     yield return dv.Top.Path;
             }
 
 
-            public static IEnumerable<DirectoryInfo> EnumerateDirectoriesForInfo (string rootPath, string filter, Ordering order=Ordering.None)
+            public static IEnumerable<DirectoryInfo> EnumerateDirectoriesForInfo (string rootPath, string filter=null, Ordering order=Ordering.None)
             {
                 for (var dv = new DirNode.Vector (rootPath, filter, order); dv.Advance();)
                     yield return dv.Top.dirInfos[dv.Top.Index];
