@@ -17,6 +17,7 @@
     <RootNamespace>Kaos.SysIo</RootNamespace>
     <Copyright>Copyright © github.com/kaosborn 2009-2017</Copyright>
     <PackageReleaseNotes>Freeware.</PackageReleaseNotes>
+    <PackageLicenseUrl>https://github.com/kaosborn/KaosSysIo/blob/master/LICENSE.txt</PackageLicenseUrl>
   </PropertyGroup>
 
   <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />
