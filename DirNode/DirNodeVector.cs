@@ -88,11 +88,11 @@ namespace Kaos.SysIo
             protected bool PregetContents (string fileFilter)
             {
                 bool result;
-                var top = stack.Peek(); // items[items.Count - 1];
+                var top = stack.Peek();
                 if (top.Index < 0)
                 {
                     result = top.dirInfos.Length > 0;
-                    top = stack.Next(); // items[items.Count - 2];
+                    top = stack.Next();
                 }
                 else
                 {
@@ -119,12 +119,7 @@ namespace Kaos.SysIo
             protected void Reset()
             {
                 stack.Clear();
-                //if (stack.Count == 0)
-                    stack.Push (new DirNode (new DirectoryInfo[] { new DirectoryInfo (RootPath) }, -1));
-                //else if (stack.Count > 1)
-                //    stack.RemoveAt (1);
-                //items[0].Index = -1;
-                //Depth = -1;
+                stack.Push (new DirNode (new DirectoryInfo[] { new DirectoryInfo (RootPath) }, -1));
             }
 
 
@@ -141,7 +136,6 @@ namespace Kaos.SysIo
                     {
                         if (dirComparer != null)
                             Array.Sort (subdirs, dirComparer);
-                        //Depth = items.Count;
                         stack.Push (new DirNode (subdirs, 0));
                         return true;
                     }
@@ -152,15 +146,15 @@ namespace Kaos.SysIo
                     if (++top.Index < top.DirCount)
                     {
                         if (stack.Height < stack.Count)
-                            /* Depth = items.Count - 1;*/ stack.Push();
+                            stack.Push();
                         return true;
                     }
 
                     stack.RemoveAt (stack.Count - 1);
                     if (stack.Count == 0)
-                    { /*Depth = -1;*/ return false; }
+                        return false;
 
-                    top = stack[stack.Count-1]; // top = items[items.Count - 1];
+                    top = stack[stack.Count-1];
                 }
             }
 
