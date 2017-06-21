@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF8FC0C2-5723-4449-9786-3E16DD230613}</ProjectGuid>
+    <ProjectGuid>{AC087388-208B-4E45-9131-0F31363309FD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SysIo400</RootNamespace>
-    <AssemblyName>SysIo400</AssemblyName>
+    <RootNamespace>Collections.QueuedStack400</RootNamespace>
+    <AssemblyName>Collections.QueuedStack400</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />
   <Import Project="..\QueuedStack\QueuedStack.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

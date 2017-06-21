@@ -44,7 +44,7 @@ namespace AppMain
             yield return "<body style='color:orange; background-color:black; font-family:monospace; font-size:medium; white-space:pre;'>";
 
             dv.Advance();
-            sb.AppendHtml (dv.Items[0].Path);
+            sb.AppendHtml (dv[0].Path);
             yield return sb.ToString();
             sb.Clear();
 
@@ -74,7 +74,7 @@ namespace AppMain
                 {
                     if (dv.Top.FileInfos != null && dv.Top.FileInfos.Count > 0)
                         sb.Append ("</div>");
-                    for (int dx = dv.Depth; dx > 1 && dv.Items[dx].IsLast; --dx)
+                    for (int dx = dv.Depth; dx > 1 && dv[dx].IsLast; --dx)
                         sb.Append ("</div>");
                 }
 

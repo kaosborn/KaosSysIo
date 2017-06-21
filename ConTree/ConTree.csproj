@@ -46,5 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />
+  <Import Project="..\QueuedStack\QueuedStack.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

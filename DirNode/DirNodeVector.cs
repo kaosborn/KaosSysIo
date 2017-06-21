@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using Kaos.Collections;
 
 namespace Kaos.SysIo
 {
@@ -36,13 +37,13 @@ namespace Kaos.SysIo
 
         public class Vector
         {
-            private readonly IList<DirNode> items;
-            public ReadOnlyCollection<DirNode> Items { get; private set; }
-
+            private readonly QueuedStack<DirNode> stack;
             private readonly IComparer<DirectoryInfo> dirComparer=null;
             private readonly IComparer<FileInfo> fileComparer=null;
 
-            public int Depth { get; private set; }
+            public DirNode this[int index] { get { return stack[index]; } }
+            public int Count { get { return stack.Count; } }
+            public int Depth { get { return stack.Height-1; } }
             protected string DirFilter { get; private set; }
             public string RootPath { get; private set; }
             public int TabSize { get; private set; }
@@ -52,16 +53,15 @@ namespace Kaos.SysIo
             public char UpRight { get; private set; }
             public char UpDownRight { get; private set; }
 
-            public DirNode Top { get { return items[Depth]; } }
-            public bool HasSubdirs { get { return Depth+1 < items.Count && items[Depth+1].dirInfos.Length > 0; } }
-            public string TreeName { get { return items.Count == 1 ? RootPath : items[items.Count-1].Name; } }
+            public DirNode Top { get { return stack.Peek(); } }
+            public bool HasSubdirs { get { return Depth+1 < stack.Count && stack[Depth+1].dirInfos.Length > 0; } }
 
 
             protected Vector (string rootPath, string dirFilter=null, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4)
             {
-                this.items = new List<DirNode> { new DirNode (new DirectoryInfo[] { new DirectoryInfo (rootPath) }, -1) };
-                this.Items = new ReadOnlyCollection<DirNode> (items);
-                this.Depth = -1;
+                this.stack = new QueuedStack<DirNode>();
+                this.stack.Enqueue (new DirNode (new DirectoryInfo[] { new DirectoryInfo (rootPath) }, -1));
+
                 this.TabSize = tabSize;
                 this.DirFilter = dirFilter?? "*";
 
@@ -88,18 +88,18 @@ namespace Kaos.SysIo
             protected bool PregetContents (string fileFilter)
             {
                 bool result;
-                var top = items[items.Count - 1];
+                var top = stack.Peek(); // items[items.Count - 1];
                 if (top.Index < 0)
                 {
                     result = top.dirInfos.Length > 0;
-                    top = items[items.Count - 2];
+                    top = stack.Next(); // items[items.Count - 2];
                 }
                 else
                 {
                     DirectoryInfo[] nextDirs = top.dirInfos[top.Index].GetDirectories (DirFilter);
                     if (dirComparer != null)
                         Array.Sort (nextDirs, dirComparer);
-                    items.Add (new DirNode (nextDirs, -1));
+                    stack.Enqueue (new DirNode (nextDirs, -1));
                     result = nextDirs.Length > 0;
                 }
 
@@ -118,21 +118,22 @@ namespace Kaos.SysIo
 
             protected void Reset()
             {
-                if (items.Count == 0)
-                    items.Add (new DirNode (new DirectoryInfo[] { new DirectoryInfo (RootPath) }, -1));
-                else if (items.Count > 1)
-                    items.RemoveAt (1);
-                items[0].Index = -1;
-                Depth = -1;
+                stack.Clear();
+                //if (stack.Count == 0)
+                    stack.Push (new DirNode (new DirectoryInfo[] { new DirectoryInfo (RootPath) }, -1));
+                //else if (stack.Count > 1)
+                //    stack.RemoveAt (1);
+                //items[0].Index = -1;
+                //Depth = -1;
             }
 
 
             protected bool Advance()
             {
-                if (items.Count == 0)
+                if (stack.Count == 0)
                     return false;
 
-                DirNode top = items[items.Count - 1];
+                DirNode top = stack[stack.Count - 1];
                 if (top.Index >= 0)
                 {
                     DirectoryInfo[] subdirs = top.dirInfos[top.Index].GetDirectories (DirFilter);
@@ -140,8 +141,8 @@ namespace Kaos.SysIo
                     {
                         if (dirComparer != null)
                             Array.Sort (subdirs, dirComparer);
-                        Depth = items.Count;
-                        items.Add (new DirNode (subdirs, 0));
+                        //Depth = items.Count;
+                        stack.Push (new DirNode (subdirs, 0));
                         return true;
                     }
                 }
@@ -149,13 +150,17 @@ namespace Kaos.SysIo
                 for (;;)
                 {
                     if (++top.Index < top.DirCount)
-                    { Depth = items.Count - 1; return true; }
+                    {
+                        if (stack.Height < stack.Count)
+                            /* Depth = items.Count - 1;*/ stack.Push();
+                        return true;
+                    }
 
-                    items.RemoveAt (items.Count - 1);
-                    if (items.Count == 0)
-                    { Depth = -1; return false; }
+                    stack.RemoveAt (stack.Count - 1);
+                    if (stack.Count == 0)
+                    { /*Depth = -1;*/ return false; }
 
-                    top = items[items.Count - 1];
+                    top = stack[stack.Count-1]; // top = items[items.Count - 1];
                 }
             }
 

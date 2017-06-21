@@ -22,4 +22,6 @@
 
   <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />
 
+  <Import Project="..\QueuedStack\QueuedStack.projitems" Label="Shared" />
+
 </Project>

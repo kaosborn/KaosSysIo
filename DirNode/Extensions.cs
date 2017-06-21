@@ -6,14 +6,14 @@ namespace Kaos.SysIo
     {
         public static StringBuilder AppendIndent (this StringBuilder sb, DirNode.Vector dv, bool forFiles)
         {
-            var topIx = dv.Items.Count - 1;
-            if (! forFiles && dv.Items[topIx].Index < 0)
+            var topIx = dv.Count - 1;
+            if (! forFiles && dv[topIx].Index < 0)
                 --topIx;
 
             for (var ix = 1; ix <= topIx; ++ix)
                 if (! forFiles && ix == topIx)
                 {
-                    if (dv.Items[ix].IsLast)
+                    if (dv[ix].IsLast)
                         sb.Append (dv.UpRight);
                     else
                         sb.Append (dv.UpDownRight);
@@ -22,7 +22,7 @@ namespace Kaos.SysIo
                 }
                 else
                 {
-                    if (dv.Items[ix].IsLast)
+                    if (dv[ix].IsLast)
                         sb.Append (' ');
                     else
                         sb.Append (dv.UpDown);
