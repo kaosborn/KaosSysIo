@@ -42,8 +42,8 @@ namespace Kaos.SysIo
             private readonly IComparer<FileInfo> fileComparer=null;
 
             public DirNode this[int index] { get { return stack[index]; } }
-            public int Count { get { return stack.Count; } }
-            public int Depth { get { return stack.Height-1; } }
+            public int Count { get { return stack.TotalCount; } }
+            public int Depth { get { return stack.Count-1; } }
             protected string DirFilter { get; private set; }
             public string RootPath { get; private set; }
             public int TabSize { get; private set; }
@@ -54,7 +54,7 @@ namespace Kaos.SysIo
             public char UpDownRight { get; private set; }
 
             public DirNode Top { get { return stack.Peek(); } }
-            public bool HasSubdirs { get { return Depth+1 < stack.Count && stack[Depth+1].dirInfos.Length > 0; } }
+            public bool HasSubdirs { get { return Depth+1 < stack.TotalCount && stack[Depth+1].dirInfos.Length > 0; } }
 
 
             protected Vector (string rootPath, string dirFilter=null, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4)
@@ -92,7 +92,7 @@ namespace Kaos.SysIo
                 if (top.Index < 0)
                 {
                     result = top.dirInfos.Length > 0;
-                    top = stack.Next();
+                    top = stack.Head();
                 }
                 else
                 {
@@ -125,10 +125,10 @@ namespace Kaos.SysIo
 
             protected bool Advance()
             {
-                if (stack.Count == 0)
+                if (stack.TotalCount == 0)
                     return false;
 
-                DirNode top = stack[stack.Count - 1];
+                DirNode top = stack[stack.TotalCount - 1];
                 if (top.Index >= 0)
                 {
                     DirectoryInfo[] subdirs = top.dirInfos[top.Index].GetDirectories (DirFilter);
@@ -145,16 +145,16 @@ namespace Kaos.SysIo
                 {
                     if (++top.Index < top.DirCount)
                     {
-                        if (stack.Height < stack.Count)
+                        if (stack.Count < stack.TotalCount)
                             stack.Push();
                         return true;
                     }
 
-                    stack.RemoveAt (stack.Count - 1);
-                    if (stack.Count == 0)
+                    stack.RemoveAt (stack.TotalCount - 1);
+                    if (stack.TotalCount == 0)
                         return false;
 
-                    top = stack[stack.Count-1];
+                    top = stack[stack.TotalCount-1];
                 }
             }
 

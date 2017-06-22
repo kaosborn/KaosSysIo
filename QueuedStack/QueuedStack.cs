@@ -18,7 +18,7 @@ namespace Kaos.Collections
         private readonly List<T> data;
 
         /// <summary>Get the number of elements in the stack.</summary>
-        public int Height { get; private set; }
+        public int Count { get; private set; }
 
 
         /// <summary>Initialize a new QueuedStack instance that is empty.</summary>
@@ -35,23 +35,23 @@ namespace Kaos.Collections
 
 
         /// <summary>Get the sum of elements in the stack and queue.</summary>
-        public int Count { get { return data.Count; } }
+        public int TotalCount { get { return data.Count; } }
 
 
         /// <summary>Returns the element at the top of the stack without removing it.</summary>
         /// <returns>The element at the top of the stack.</returns>
-        public T Peek() { return data[Height-1]; }
+        public T Peek() { return data[Count-1]; }
 
 
         /// <summary>Returns the element at the beginning of the queue without moving it onto the stack.</summary>
         /// <returns>The first element in the queue.</returns>
-        public T Next() { return data[Height]; }
+        public T Head() { return data[Count]; }
 
 
         /// <summary>Removes all elements from the QueuedStack.</summary>
         public void Clear()
         {
-            Height = 0;
+            Count = 0;
             data.Clear();
         }
 
@@ -69,11 +69,11 @@ namespace Kaos.Collections
         /// <exception cref="InvalidOperationException">When the stack is empty.</exception>
         public T Pop()
         {
-            if (Height == 0)
+            if (Count == 0)
                 throw new InvalidOperationException ("The stack is empty.");
-            T result = data[Height-1];
-            --Height;
-            data.RemoveAt (Height);
+            T result = data[Count-1];
+            --Count;
+            data.RemoveAt (Count);
             return result;
         }
 
@@ -82,9 +82,9 @@ namespace Kaos.Collections
         /// <exception cref="InvalidOperationException">When the queue is empty.</exception>
         public void Push()
         {
-            if (Height >= Count)
+            if (Count >= data.Count)
                 throw new InvalidOperationException ("The queue is empty.");
-            ++Height;
+            ++Count;
         }
 
 
@@ -92,11 +92,11 @@ namespace Kaos.Collections
         /// <param name="item">The element to push onto the stack.</param>
         public void Push (T item)
         {
-            if (Height < Count)
-                data[Height] = item;
+            if (Count < data.Count)
+                data[Count] = item;
             else
                 data.Add (item);
-            ++Height;
+            ++Count;
         }
 
 
@@ -109,8 +109,8 @@ namespace Kaos.Collections
                 throw new ArgumentOutOfRangeException ("Index must be between 0 and number of elements.");
 
             data.RemoveAt (index);
-            if (Height > data.Count)
-                Height = data.Count;
+            if (Count > data.Count)
+                Count = data.Count;
         }
     }
 }
