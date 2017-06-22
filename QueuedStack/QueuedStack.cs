@@ -35,6 +35,8 @@ namespace Kaos.Collections
 
         public T Pop()
         {
+            if (Height == 0)
+                throw new InvalidOperationException ("The stack is empty.");
             T result = data[Height-1];
             --Height;
             data.RemoveAt (Height);
@@ -45,7 +47,7 @@ namespace Kaos.Collections
         public void Push()
         {
             if (Height >= Count)
-                throw new InvalidOperationException ("Queue is empty.");
+                throw new InvalidOperationException ("The queue is empty.");
             ++Height;
         }
 
@@ -61,6 +63,9 @@ namespace Kaos.Collections
 
         public void RemoveAt (int index)
         {
+            if (index < 0 || index >= data.Count)
+                throw new ArgumentOutOfRangeException ("Index must be between 0 and number of elements.");
+
             data.RemoveAt (index);
             if (Height > data.Count)
                 Height = data.Count;
