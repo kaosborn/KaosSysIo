@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 [assembly: CLSCompliant (true)]
-namespace Kaos.Collections
+namespace Kaos.SysIo.Collections
 {
     /// <summary>
     /// QueuedStack represents a Last-In-First-Out data structure with a queue of pending elements.

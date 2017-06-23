@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using Kaos.Collections;
+using Kaos.SysIo.Collections;
 
 namespace Kaos.SysIo
 {
