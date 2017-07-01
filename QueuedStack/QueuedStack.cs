@@ -44,7 +44,7 @@ namespace Kaos.SysIo.Collections
 
 
         /// <summary>Returns the element at the beginning of the queue without moving it onto the stack.</summary>
-        /// <returns>The first element in the queue.</returns>
+        /// <returns>The first element in the queue of pending stack pushes.</returns>
         public T Head() { return data[Count]; }
 
 

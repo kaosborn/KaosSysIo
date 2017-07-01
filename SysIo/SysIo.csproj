@@ -6,19 +6,20 @@
     <PackageId>Kaos.SysIo</PackageId>
     <Product>KaosSysIo</Product>
     <Authors>Kasey O.</Authors>
-    <Description>Directory walker</Description>
+    <Description>Directory walker library in .NET</Description>
     <RepositoryUrl>https://github.com/kaosborn/KaosSysIo.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageProjectUrl>https://github.com/kaosborn/KaosSysIo</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/kaosborn/KaosSysIo/wiki</PackageProjectUrl>
     <Company>github.com/kaosborn</Company>
     <AssemblyVersion>0.2.0.0</AssemblyVersion>
     <FileVersion>0.2.0.0</FileVersion>
     <AssemblyName>KaosSysIo</AssemblyName>
     <RootNamespace>Kaos.SysIo</RootNamespace>
-    <Copyright>Copyright © github.com/kaosborn 2009-2017</Copyright>
+    <Copyright>Copyright © 2009-2017 github.com/kaosborn</Copyright>
     <PackageReleaseNotes>Freeware.</PackageReleaseNotes>
     <PackageLicenseUrl>https://github.com/kaosborn/KaosSysIo/blob/master/LICENSE.txt</PackageLicenseUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageTags>Generics Collections Stack Queue Directory walking traversal</PackageTags>
   </PropertyGroup>
 
   <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />

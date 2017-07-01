@@ -2,7 +2,8 @@
 // Project: KaosSysIo
 // File:    LiteDirWalker.cs
 // Purpose: Define lite alternative to the DirNode class.
-//          
+//          This is a minimal solution without the features present in DirNode.Vector.
+//
 
 using System.Collections.Generic;
 using System.IO;

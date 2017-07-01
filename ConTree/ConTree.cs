@@ -1,4 +1,11 @@
-﻿using System;
+﻿//
+// Project: KaosSysIo
+// Program: ConTree.cs
+// Purpose: Provide alternative to Windows tree.exe console program.
+//          Additional features are sorting, web page output, and control over indention.
+//
+
+using System;
 using System.IO;
 using Kaos.SysIo;
 
