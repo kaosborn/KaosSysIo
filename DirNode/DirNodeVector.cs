@@ -190,7 +190,7 @@ namespace Kaos.SysIo
             public static IEnumerable<string> GenerateTextTree (string rootPath, string fileFilter, DrawWith drawWith=DrawWith.Graphic, Ordering order=Ordering.None, int tab=4)
             {
                 var sb = new StringBuilder();
-                for (var dv = new DirNode.Vector (rootPath, null, order, drawWith, tab); dv.Advance(); sb.Clear())
+                for (var dv = new DirNode.Vector (rootPath, null, order, drawWith, tab); dv.Advance(); sb.Length = 0)
                 {
                     sb.AppendIndent (dv, false);
                     sb.Append (dv.Top.Path);
@@ -201,7 +201,7 @@ namespace Kaos.SysIo
                         dv.PregetContents (fileFilter);
                         if (dv.Top.FileInfos.Count > 0)
                         {
-                            sb.Clear();
+                            sb.Length = 0;
                             sb.AppendIndent (dv, true);
                             int indentLength = sb.Length;
                             foreach (var fInfo in dv.Top.FileInfos)

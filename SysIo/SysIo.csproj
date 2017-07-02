@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFrameworks>netstandard1.4;net40;net35</TargetFrameworks>
     <Version>0.2.0</Version>
     <PackageId>Kaos.SysIo</PackageId>
     <Product>KaosSysIo</Product>
