@@ -22,6 +22,10 @@
     <PackageTags>Generics Collections Stack Queue Directory walking traversal</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.4|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.4\KaosSysIo.xml</DocumentationFile>
+  </PropertyGroup>
+
   <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />
 
   <Import Project="..\QueuedStack\QueuedStack.projitems" Label="Shared" />
