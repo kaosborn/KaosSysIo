@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 
 [assembly: CLSCompliant (true)]
-namespace Kaos.SysIo.Collections
+namespace Kaos.Collections
 {
     /// <summary>
     /// QueuedStack represents a Last-In-First-Out data structure with a queue of pending elements.
     /// </summary>
     /// <remarks>
+    /// <typeparam name="T">Specifies the type of elements in the queued stack.</typeparam>
     /// QueuedStack is implemented as a single array with the stack immediately followed by the queue.
     /// When the API overlaps that of the BCL Stack class, the semantics are identical.
     /// If only the stack API is utilized, its behavior if functionally equivalent to that of the BCL Stack class.
     /// </remarks>
-    /// <typeparam name="T">Specifies the type of elements in the queued stack.</typeparam>
     public class QueuedStack<T>
     {
         private readonly List<T> data;
