@@ -1,6 +1,6 @@
 ﻿//
 // Project: KaosSysIo
-// File:    LiteDirWalker.cs
+// File:    DirWalker.cs
 // Purpose: Define lite alternative to the DirNode class.
 //          This is a minimal solution without the features present in DirNode.Vector.
 //
@@ -8,20 +8,20 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace AltSysIo
+namespace Kaos.SysIo
 {
     /// <summary>Provide iterator for directory traversal.</summary>
-    public class LiteDirWalker : IEnumerable<string>
+    public class DirWalker : IEnumerable<string>
     {
         private string[] dirs;
         private int index;
 
         /// <summary>Generate names of subdirecties under the specified directory.</summary>
         /// <param name="root">The path for which subdirectory names are yielded.</param>
-        public LiteDirWalker (string root)
+        public DirWalker (string root)
         { this.dirs = new string[] { root }; }
 
-        private LiteDirWalker (string[] dirs)
+        private DirWalker (string[] dirs)
         { this.dirs = dirs; }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -29,7 +29,7 @@ namespace AltSysIo
 
         public IEnumerator<string> GetEnumerator()
         {
-            var stack = new Stack<LiteDirWalker>();
+            var stack = new Stack<DirWalker>();
             for (var node = this;;)
             {
                 string dirName = node.dirs[node.index];
@@ -41,7 +41,7 @@ namespace AltSysIo
                     if (subdirs.Length > 0)
                     {
                         stack.Push (node);
-                        node = new LiteDirWalker (subdirs);
+                        node = new DirWalker (subdirs);
                         continue;
                     }
                 }
