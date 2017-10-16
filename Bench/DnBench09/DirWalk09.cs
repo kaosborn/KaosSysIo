@@ -1,17 +1,15 @@
-﻿//
-// Program: DirWalk09.cs
-// Purpose: Demonstrate FxCore usage.
+﻿// Program: DnBench09.dll
+// Purpose: Demonstrate FxCore usage of the DirNode class.
 //
-// Usage:
-// • To execute from a command prompt run:
-//     dotnet DirWalk09.dll
+// To execute from a command prompt run:
+//   dotnet DnBench09.dll
 
 using System;
 using Kaos.SysIo;
 
-namespace ExampleApp
+namespace BenchApp
 {
-    class DirWalk09
+    class DnBench09
     {
         static void Main()
         {

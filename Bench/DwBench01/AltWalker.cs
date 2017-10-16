@@ -1,7 +1,5 @@
-﻿//
-// Program: AltWalker.cs
-// Purpose: Demonstrate usage of the LiteDirWalker class.
-//
+﻿// Program: DwBench01.exe
+// Purpose: Exercise the DirWalker class.
 
 using System;
 using System.IO;
@@ -9,7 +7,7 @@ using Kaos.SysIo;
 
 namespace BenchApp
 {
-    class LiteWalkBench01
+    class DwBench01
     {
         static void Main()
         {
