@@ -9,6 +9,6 @@
     <Import_RootNamespace>DirWalker</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)LiteDirWalker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DirWalker.cs" />
   </ItemGroup>
 </Project>

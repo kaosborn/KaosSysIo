@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AltWalker.cs" />
+    <Compile Include="DwBench01.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="..\..\Source\DirWalker\DirWalker.projitems" Label="Shared" />

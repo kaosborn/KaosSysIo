@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Comparers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DirNodeVector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DirNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
   </ItemGroup>
 </Project>
