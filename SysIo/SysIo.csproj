@@ -26,8 +26,7 @@
     <DocumentationFile>bin\Release\netstandard1.4\KaosSysIo.xml</DocumentationFile>
   </PropertyGroup>
 
-  <Import Project="..\DirNode\DirNode.projitems" Label="Shared" />
+  <Import Project="..\Source\DirNode\DirNode.projitems" Label="Shared" />
 
-  <Import Project="..\QueuedStack\QueuedStack.projitems" Label="Shared" />
-
+  <Import Project="..\Source\QueuedStack\QueuedStack.projitems" Label="Shared" />
 </Project>
