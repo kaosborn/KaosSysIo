@@ -193,7 +193,7 @@ namespace Kaos.SysIo
                 for (var dv = new DirNode.Vector (rootPath, null, order, drawWith, tab); dv.Advance(); sb.Length = 0)
                 {
                     sb.AppendIndent (dv, false);
-                    sb.Append (dv.Top.Path);
+                    sb.Append (dv.Depth == 0 ? dv.Top.Path : dv.Top.Name);
                     yield return sb.ToString();
 
                     if (fileFilter != null)

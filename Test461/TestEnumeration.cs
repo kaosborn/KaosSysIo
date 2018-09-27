@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Kaos.SysIo;
 
-namespace Test400
+namespace Test461
 {
     [TestClass]
     public class TestDirVector
@@ -12,6 +12,8 @@ namespace Test400
         string[] expectedL = { "12.txt", "8A.txt", "D2\\Doc01.rtf" };
         string[] expectedN = { "8A.txt", "12.txt", "D2\\Doc01.rtf" };
         string[] expectedD = { "", "D1", "D1\\D2" };
+        string[] expectedD2 = { "Targets", "D1", "D2" };
+
 
         [TestMethod]
         public void TestFiles1()
@@ -58,6 +60,22 @@ namespace Test400
             }
 
             Assert.AreEqual (expectedN.Length, ix);
+            Assert.AreEqual (expectedN.Length, ix);
+        }
+
+
+        [TestMethod]
+        public void TestDirs2()
+        {
+            int ix = 0;
+            foreach (var info in DirNode.Vector.EnumerateDirectoriesForInfo (root, null, Ordering.Lexical))
+            {
+                Assert.IsTrue (ix < expectedD2.Length);
+                Assert.AreEqual (expectedD2[ix], info.Name);
+                ++ix;
+            }
+
+            Assert.AreEqual (expectedD2.Length, ix);
         }
 
 
