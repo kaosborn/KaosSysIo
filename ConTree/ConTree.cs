@@ -1,8 +1,11 @@
 ﻿//
 // Project: KaosSysIo
-// Program: ConTree.cs
-// Purpose: Provide alternative to Windows tree.exe console program.
-//          Additional features are sorting, web page output, and control over indention.
+// File: ConTree.cs
+//
+// Purpose: Provide alternative to Windows tree.exe console program:
+// - Adds option to sort naturally
+// - Adds option to produce static web page output
+// - Adds control over indention
 //
 
 using System;
@@ -95,7 +98,7 @@ namespace AppMain
             Console.WriteLine ("   /F   Display the names of the files in each folder.");
             Console.WriteLine ("   /A   Use ASCII instead of extended characters.");
             Console.WriteLine ("   /W   Produce output suitable for a static HTML web page.");
-            Console.WriteLine ("   /SL  Sort lexically.");
+            Console.WriteLine ("   /SL  Sort lexically (default).");
             Console.WriteLine ("   /SN  Sort naturally.");
             Console.WriteLine ("   /n   Indent by n where n is a number.");
         }
