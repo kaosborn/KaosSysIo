@@ -56,7 +56,7 @@ These programs exist to:
 Building the Release configuration of the project contained in this folder
 will produce a `.nuget` file for distribution.
 
-* The `SysIo461` folder contains a .NET 4.61 build of the class library.
+* The `SysIo461` folder contains a .NET 4.6.1 build of the class library.
 This project is used for development and testing only.
 
 * The `Source` folder contains all library source code.
