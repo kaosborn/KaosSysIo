@@ -14,9 +14,9 @@ namespace AppMain
             var dv = new DirVectorHtml (rootPath, order, drawWith, tab);
             int buttonId = 0;
 
-            yield return ("<!DOCTYPE html>");
-            yield return ("<html>");
-            yield return ("<head>");
+            yield return "<!DOCTYPE html>";
+            yield return "<html>";
+            yield return "<head>";
 
             var sb = new StringBuilder ("<title>");
             sb.AppendHtml (rootPath);

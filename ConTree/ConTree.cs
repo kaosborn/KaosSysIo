@@ -52,10 +52,10 @@ namespace AppMain
                     if (isOk && tryTab > 0)
                         tab = tryTab;
                     else
-                    { Console.WriteLine ("Invalid switch - " + args[ix]); return 1; }
+                    { Console.WriteLine ($"Invalid switch - {args[ix]}"); return 1; }
                 }
                 else if (rootPath != null)
-                { Console.WriteLine ("Too many parameters - " + args[ix]); return 2; }
+                { Console.WriteLine ($"Too many parameters - {args[ix]}"); return 2; }
                 else
                     rootPath = arg;
             }
@@ -93,7 +93,7 @@ namespace AppMain
 
             Console.WriteLine ("Graphically displays the folder structure of a drive or path.");
             Console.WriteLine ();
-            Console.WriteLine (exe + " [drive:][path] [/F] [/A] [/W] [/SL] [/SN] [/n]");
+            Console.WriteLine ($"{exe} [drive:][path] [/F] [/A] [/W] [/SL] [/SN] [/n]");
             Console.WriteLine ();
             Console.WriteLine ("   /F   Display the names of the files in each folder.");
             Console.WriteLine ("   /A   Use ASCII instead of extended characters.");

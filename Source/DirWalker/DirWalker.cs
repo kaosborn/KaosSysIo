@@ -2,7 +2,7 @@
 // Project: KaosSysIo
 // File:    DirWalker.cs
 // Purpose: Define lite alternative to the DirNode class.
-//          This is a minimal solution without the features present in DirNode.Vector.
+//          This is a minimal solution without many features present in DirNode.Vector.
 //
 
 using System.Collections.Generic;
@@ -19,13 +19,13 @@ namespace Kaos.SysIo
         /// <summary>Generate names of subdirecties under the specified directory.</summary>
         /// <param name="root">The path for which subdirectory names are yielded.</param>
         public DirWalker (string root)
-        { this.dirs = new string[] { root }; }
+         => this.dirs = new string[] { root };
 
         private DirWalker (string[] dirs)
-        { this.dirs = dirs; }
+         => this.dirs = dirs;
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        { return GetEnumerator(); }
+         => GetEnumerator();
 
         public IEnumerator<string> GetEnumerator()
         {

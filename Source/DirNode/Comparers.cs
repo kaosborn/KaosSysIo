@@ -15,7 +15,7 @@ namespace Kaos.SysIo
             public static readonly IComparer<DirectoryInfo> Comparer = new NaturalCompareDirectoryInfo();
 
             public override int Compare (DirectoryInfo d1, DirectoryInfo d2)
-            { return SafeNativeMethods.StrCmpLogicalW (d1.Name, d2.Name); }
+             => SafeNativeMethods.StrCmpLogicalW (d1.Name, d2.Name);
         }
 
         public class LexicalCompareDirectoryInfo : Comparer<DirectoryInfo>
@@ -23,7 +23,7 @@ namespace Kaos.SysIo
             public static readonly IComparer<DirectoryInfo> Comparer = new LexicalCompareDirectoryInfo();
 
             public override int Compare (DirectoryInfo d1, DirectoryInfo d2)
-            { return String.CompareOrdinal (d1.Name, d2.Name); }
+             => String.CompareOrdinal (d1.Name, d2.Name);
         }
 
         public class NaturalCompareFileInfo : Comparer<FileInfo>
@@ -31,7 +31,7 @@ namespace Kaos.SysIo
             public static readonly IComparer<FileInfo> Comparer = new NaturalCompareFileInfo();
 
             public override int Compare (FileInfo f1, FileInfo f2)
-            { return SafeNativeMethods.StrCmpLogicalW (f1.Name, f2.Name); }
+             => SafeNativeMethods.StrCmpLogicalW (f1.Name, f2.Name);
         }
 
         public class LexicalCompareFileInfo : Comparer<FileInfo>
@@ -39,7 +39,7 @@ namespace Kaos.SysIo
             public static readonly IComparer<FileInfo> Comparer = new LexicalCompareFileInfo();
 
             public override int Compare (FileInfo f1, FileInfo f2)
-            { return String.CompareOrdinal (f1.Name, f2.Name); }
+             => String.CompareOrdinal (f1.Name, f2.Name);
         }
     }
 }

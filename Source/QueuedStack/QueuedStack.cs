@@ -23,29 +23,27 @@ namespace Kaos.Collections
 
         /// <summary>Initialize a new QueuedStack instance that is empty.</summary>
         public QueuedStack()
-        {
-            data = new List<T>();
-        }
+         => data = new List<T>();
 
 
         /// <summary>Get the element at the specified index.</summary>
         /// <param name="index">The zero-based index of the element to get.</param>
         /// <returns>The element at the specified index.</returns>
-        public T this[int index] { get { return data[index]; } }
+        public T this[int index] => data[index];
 
 
         /// <summary>Get the sum of elements in the stack and queue.</summary>
-        public int TotalCount { get { return data.Count; } }
+        public int TotalCount => data.Count;
 
 
         /// <summary>Returns the element at the top of the stack without removing it.</summary>
         /// <returns>The element at the top of the stack.</returns>
-        public T Peek() { return data[Count-1]; }
+        public T Peek() => data[Count-1];
 
 
         /// <summary>Returns the element at the beginning of the queue without moving it onto the stack.</summary>
         /// <returns>The first element in the queue of pending stack pushes.</returns>
-        public T Head() { return data[Count]; }
+        public T Head() => data[Count];
 
 
         /// <summary>Removes all elements from the QueuedStack.</summary>
@@ -59,9 +57,7 @@ namespace Kaos.Collections
         /// <summary>Append to the queue of pending elements.</summary>
         /// <param name="item">The element to append to the queue.</param>
         public void Enqueue (T item)
-        {
-            data.Add (item);
-        }
+         => data.Add (item);
 
 
         /// <summary>Removes and returns the element at the top of the stack.</summary>

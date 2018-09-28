@@ -22,10 +22,10 @@ namespace Kaos.SysIo
         public int Index { get; private set; }
         public ReadOnlyCollection<FileInfo> FileInfos { get; private set; }
 
-        public string Path { get { return dirInfos[Index].FullName; } }
-        public string Name { get { return dirInfos[Index].Name; } }
-        public int DirCount { get { return dirInfos.Length; } }
-        public bool IsLast { get { return Index >= DirCount - 1; } }
+        public string Path => dirInfos[Index].FullName;
+        public string Name => dirInfos[Index].Name;
+        public bool IsLast => Index >= DirCount - 1;
+        public int DirCount => dirInfos.Length;
 
 
         private DirNode (DirectoryInfo[] dirInfos, int index)
@@ -41,9 +41,9 @@ namespace Kaos.SysIo
             private readonly IComparer<DirectoryInfo> dirComparer=null;
             private readonly IComparer<FileInfo> fileComparer=null;
 
-            public DirNode this[int index] { get { return stack[index]; } }
-            public int Count { get { return stack.TotalCount; } }
-            public int Depth { get { return stack.Count-1; } }
+            public DirNode this[int index] => stack[index];
+            public int Count => stack.TotalCount;
+            public int Depth => stack.Count-1;
             protected string DirFilter { get; private set; }
             public string RootPath { get; private set; }
             public int TabSize { get; private set; }
@@ -53,8 +53,8 @@ namespace Kaos.SysIo
             public char UpRight { get; private set; }
             public char UpDownRight { get; private set; }
 
-            public DirNode Top { get { return stack.Peek(); } }
-            public bool HasSubdirs { get { return Depth+1 < stack.TotalCount && stack[Depth+1].dirInfos.Length > 0; } }
+            public DirNode Top => stack.Peek();
+            public bool HasSubdirs => Depth+1 < stack.TotalCount && stack[Depth+1].dirInfos.Length > 0;
 
 
             protected Vector (string rootPath, string dirFilter=null, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4)
@@ -66,9 +66,9 @@ namespace Kaos.SysIo
                 this.DirFilter = dirFilter?? "*";
 
                 if (drawWith == DrawWith.Graphic)
-                { this.UpDown = '\u2502'; this.LeftRight = '\u2500'; this.UpRight = '\u2514'; this.UpDownRight = '\u251C'; }
+                { UpDown = '\u2502'; LeftRight = '\u2500'; UpRight = '\u2514'; UpDownRight = '\u251C'; }
                 else
-                { this.UpDown = '|'; this.LeftRight = '-'; this.UpRight = '\\'; this.UpDownRight = '+'; }
+                { UpDown = '|'; LeftRight = '-'; UpRight = '\\'; UpDownRight = '+'; }
 
                 if (order == Ordering.Lexical)
                 {
