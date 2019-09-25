@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription ("Display the folder structure of a path.")]
 [assembly: AssemblyCompany ("github.com/kaosborn")]
 [assembly: AssemblyProduct ("tree2")]
-[assembly: AssemblyCopyright ("Copyright © 2017-2018 github.com/kaosborn")]
+[assembly: AssemblyCopyright ("Copyright © 2017-2019 github.com/kaosborn")]
 [assembly: AssemblyTrademark ("freeware")]
 [assembly: AssemblyCulture ("")]
 

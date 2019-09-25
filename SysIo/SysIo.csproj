@@ -15,7 +15,7 @@
     <FileVersion>0.6.0.0</FileVersion>
     <AssemblyName>KaosSysIo</AssemblyName>
     <RootNamespace>Kaos.SysIo</RootNamespace>
-    <Copyright>Copyright © 2009-2018 github.com/kaosborn</Copyright>
+    <Copyright>Copyright © 2009-2019 github.com/kaosborn</Copyright>
     <PackageReleaseNotes>Freeware.</PackageReleaseNotes>
     <PackageLicenseUrl>https://github.com/kaosborn/KaosSysIo/blob/master/LICENSE.txt</PackageLicenseUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
