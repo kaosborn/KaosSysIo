@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConTree", "ConTree\ConTree.csproj", "{E8A67EDC-0D77-4FFB-97FB-1CB8EAA9E1C1}"
 EndProject
@@ -62,6 +62,7 @@ Global
 		{FCF5CC8D-FFB4-48E5-A1A2-8F295833BBFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCF5CC8D-FFB4-48E5-A1A2-8F295833BBFB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{931D3FE9-BC3F-4EF0-BE4B-1B9FA08DD898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{931D3FE9-BC3F-4EF0-BE4B-1B9FA08DD898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{931D3FE9-BC3F-4EF0-BE4B-1B9FA08DD898}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{931D3FE9-BC3F-4EF0-BE4B-1B9FA08DD898}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
