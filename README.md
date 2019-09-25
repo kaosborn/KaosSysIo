@@ -1,5 +1,10 @@
 # KaosSysIo
 
+<a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/Build.yml">
+<img src="https://github.com/kaosborn/KaosSysIo/workflows/Build/badge.svg"></a>
+<a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/Test.yml">
+<img src="https://github.com/kaosborn/KaosSysIo/workflows/Test/badge.svg"></a>
+
 KaosSysIo is a .NET codebase that provides classes for traversing directories.
 Included is the `tree2.exe` utility program that is an improved version
 of the Windows `tree.exe` program.
