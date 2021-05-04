@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Kaos.SysIo;
 
-namespace Test461
+namespace TestCore
 {
     [TestClass]
     public class TestDirVector

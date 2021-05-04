@@ -1,15 +1,12 @@
-﻿// Program: DnBench09.dll
-// Purpose: Demonstrate FxCore usage of the DirNode class.
-//
-// To execute from a command prompt run:
-//   dotnet DnBench09.dll
+﻿// Program: DnBench01.exe
+// Purpose: Demonstrate .NET Core usage of the DirNode class.
 
 using System;
 using Kaos.SysIo;
 
 namespace BenchApp
 {
-    class DnBench09
+    class DnBench01
     {
         static void Main()
         {

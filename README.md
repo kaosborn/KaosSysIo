@@ -7,66 +7,133 @@
 
 ### Overview
 
-KaosSysIo is a .NET codebase that provides classes for traversing directories.
+The **KaosSysIo** repository is a .NET codebase that provides classes for traversing directories.
 Included is the `tree2.exe` utility program that is an improved version
-of the Windows `tree.exe` program.
+of the Windows `tree.exe` console program.
 
-Primary types included in the codebase are:
+Primary types included in this codebase are:
 
 * `Kaos.SysIo.Node` - represents a directory node
 * `Kaos.SysIo.NodeVector` - represents a list of directory nodes
 * `Kaos.SysIo.DirWalker` - a lite alternative to Node/NodeVector
 * `Kaos.Collections.QueuedStack` - a stack with a queue of items to push
 
-The provided `.nuget` library is built as a .NET Standard project with multitargeting.
-This library does not include the `DirWalker` class which must be consumed via source code.
+### `tree2.exe`
 
-### Library installation
-
-To install using a direct reference to a `.dll` binary:
-
-1. Download the `.nuget` package:
-
-   * https://github.com/kaosborn/KaosSysIo/releases/
-
-2. As archives, individual binaries may be extracted from the `.nuget` package for specific platforms.
-A project may then reference the extracted platform-specific `.dll` directly.
-
-### `tree2.exe` installation
-
-The provided utility program is a standalone executable that requires .NET 4.0.
+The current build of `tree2.exe` targets .NET Framework 4.8.
+This is built in the `ConTree` project.
 Copy this program to a directory in PATH for an improved version of Microsoft's `tree.exe` program.
 
-### Documentation
+```
+Usage:
 
-Installing as a NuGet package will provide IntelliSense and object browser documentation from the `.xml` file.
+tree2 [drive:][path] [/F] [/A] [/W] [/SL] [/SN] [/n]
 
-### Build
+/F   Display the names of the files in each folder.
+/A   Use ASCII instead of extended characters.
+/W   Produce output suitable for a static HTML web page.
+/SL  Sort lexically.
+/SN  Sort naturally.
+/n   Indent by n where n is a number.
+```
 
-Complete source code with embedded XML documentation is hosted at GitHub:
+Not in `tree.exe` are the `/S`, `/W`, and `/n` switches.
 
-* https://github.com/kaosborn/KaosSysIo/releases/
+#### Example session 1
 
-### Layout
+The first example changes the indent from 4 to 2 with the `/2` switch.
+Files as well as folders are listed with the `/F` switch.
+ASCII characters are used for the outline by using the `/A` switch.
+
+````
+T:\>tree2 T:\Unicode /A /F /2
+
+T:\Unicode
+| Unicode charts.url
+|
++-Charts
+|   U0000 - Controls and Basic Latin.pdf
+|   U0080 - C1 Controls.pdf
+|   U0100 - Latin Extended - A.pdf
+|   U0180 - Latin Extended - B.pdf
+|   U2500 - Box Drawing.pdf
+|   U2C60 - Latin Extended - C.pdf
+|   UFFF0 - Specials.pdf
+|
+\-Data
+  | UCD-150209.zip
+  | UCD-160620.zip
+  |
+  \-extracts
+      UnicodeData-160620.txt
+````
+
+#### Example session 2
+
+The Windows `tree.exe` program produces results that are sorted however the file system happens to return them.
+The `tree2.exe` program duplicates this behavior.
+First, files on a FAT32 drive are listed with the `/F` switch.
+
+```
+T:\>tree2.exe T:\Numbers /F
+T:\Numbers
+    20 - twenty.txt
+    5 - five.txt
+    100 - hundred.txt
+```
+
+Without sorting, the files are listed in a seemingly random order.
+Next, results are sorted naturally with the `/SN` switch.
+
+```
+T:\>tree2.exe T:\Numbers /F /SN
+T:\Numbers
+    5 - five.txt
+    20 - twenty.txt
+    100 - hundred.txt
+```
+
+#### Example session 3
+
+This example produces a static web page.
+First, the `chcp` Windows command sets the shell's code page to UTF-8.
+Then a web page with fully collapsible folders is produced with the `/W` switch.
+Lexical sorting is used for the hexidecimals with the `/SL` switch.
+
+````
+T:\>chcp 65001
+Active code page: 65001
+
+T:\>tree2 T:\Unicode /A /F /SL /W > MyPage.html
+T:\>msedge.exe MyPage.html
+````
+
+Browser output:
+
+![example output](/Images/contree-example-unicode-1.png)  
+(All subfolders are expanded in this example.)
+
+### Folder layout
 
 This repository is a single Visual Studio solution with additional files in the root.
 
-* The `Bench` folder contains console program projects that mostly target the .NET 4.61 library build.
-These programs exist to:
+* The `Bench` folder contains console programs that:
 
-  * Provide examples for documentation
-  * Exercise classes in this library
+  * Provide examples for documentation.
+  * Exercise classes in this library.
 
-* The `ConTree` folder contains the build for the `tree2.exe` .NET 4.0 console program.
+* The `ConTree` folder contains the build for the `tree2.exe` .NET console program.
+Targetting .NET Framework 4.8 produces an executable of only 23K.
+With the imminent .NET 6, this build will likely change.
 
-* The `SysIo` folder contains the primary build of the class library.
-Building the Release configuration of the project contained in this folder
-will produce a `.nuget` file for distribution.
-
-* The `SysIo461` folder contains a .NET 4.6.1 build of the class library.
-This project is used for development and testing only.
+* The `SysIo` folder builds a class library in the form of a `.nuget` file.
 
 * The `Source` folder contains all library source code.
-All source is organized using shared projects which are referenced by the build projects.
+All source is organized using shared projects for inclusion by other projects.
+The executables and the test project reference these shared projects.
 
-* The `Test461` folder contains a few unit tests.
+* The `TestCore` folder contains a few unit tests.
+
+### License
+
+All work here falls under the [MIT License](/LICENSE).
