@@ -8,8 +8,25 @@ using Kaos.Collections;
 
 namespace Kaos.SysIo
 {
-    public enum Ordering { None, Lexical, Natural }
-    public enum DrawWith { Ascii, Graphic }
+    /// <summary>Specifies sorting of output.</summary>
+    public enum Ordering
+    {
+        /// <summary>Apply no sorting.</summary>
+        None,
+        /// <summary>Sort character by character.</summary>
+        Lexical,
+        /// <summary>Sort numbers as a single character.</summary>
+        Natural
+    }
+
+    /// <summary>Specifies outline edge characters.</summary>
+    public enum DrawWith
+    {
+        /// <summary>Limit output to ASCII only.</summary>
+        Ascii,
+        /// <summary>Use extended characters from code page 437.</summary>
+        Graphic
+    }
 
     /// <summary>
     /// A single directory node with its index in its parent's subdirs.
@@ -18,15 +35,25 @@ namespace Kaos.SysIo
     [DebuggerDisplay(@"\{{Path}}")]
     public class DirNode
     {
-        private DirectoryInfo[] dirInfos;
+        private readonly DirectoryInfo[] dirInfos;
+
+        /// <summary>Offset into the *DirectoryInfo* collection.</summary>
         public int Index { get; private set; }
+
+        /// <summary>Collection of files in this directory.</summary>
         public ReadOnlyCollection<FileInfo> FileInfos { get; private set; }
 
+        /// <summary>Directory path to this node.</summary>
         public string Path => dirInfos[Index].FullName;
-        public string Name => dirInfos[Index].Name;
-        public bool IsLast => Index >= DirCount - 1;
-        public int DirCount => dirInfos.Length;
 
+        /// <summary>Node name.</summary>
+        public string Name => dirInfos[Index].Name;
+
+        /// <summary>Returns *true* if at last valid position, else *false*.</summary>
+        public bool IsLast => Index >= DirCount - 1;
+
+        /// <summary>Gets number of valid positions.</summary>
+        public int DirCount => dirInfos.Length;
 
         private DirNode (DirectoryInfo[] dirInfos, int index)
         {
@@ -34,29 +61,58 @@ namespace Kaos.SysIo
             this.Index = index;
         }
 
-
+        /// <summary>A collection of <see cref="DirNode"/> items.</summary>
         public class Vector
         {
             private readonly QueuedStack<DirNode> stack;
-            private readonly IComparer<DirectoryInfo> dirComparer=null;
-            private readonly IComparer<FileInfo> fileComparer=null;
+            private readonly IComparer<DirectoryInfo> dirComparer = null;
+            private readonly IComparer<FileInfo> fileComparer = null;
 
+            /// <summary>Gets the <see cref="DirNode"/> at the supplied location.</summary>
+            /// <param name="index">Collection index.</param>
+            /// <returns>Item at *index*.</returns>
             public DirNode this[int index] => stack[index];
+
+            /// <summary>Gets the number of elements contained in the <see cref="DirNode"/>.</summary>
             public int Count => stack.TotalCount;
-            public int Depth => stack.Count-1;
+
+            /// <summary>Returns the number of directory levels.</summary>
+            public int Depth => stack.Count - 1;
+
+            /// <summary>Gets the directory search pattern.</summary>
             protected string DirFilter { get; private set; }
+
+            /// <summary>Topmost directory.</summary>
             public string RootPath { get; private set; }
+
+            /// <summary>Indentation amount per level.</summary>
             public int TabSize { get; private set; }
 
+            /// <summary>Vertical connector.</summary>
             public char UpDown { get; private set; }
+
+            /// <summary>Horizontal connector.</summary>
             public char LeftRight { get; private set; }
+
+            /// <summary>Bottom-left corner connector.</summary>
             public char UpRight { get; private set; }
+
+            /// <summary>Left-T connector.</summary>
             public char UpDownRight { get; private set; }
 
+            /// <summary>Returns the element at the top of the stack without removing it.</summary>
             public DirNode Top => stack.Peek();
-            public bool HasSubdirs => Depth+1 < stack.TotalCount && stack[Depth+1].dirInfos.Length > 0;
+
+            /// <summary>Returns *true* if move levels, else *false*.</summary>
+            public bool HasSubdirs => Depth + 1 < stack.TotalCount && stack[Depth + 1].dirInfos.Length > 0;
 
 
+            /// <summary>Initializes a new instance of the *DirNode.Vector* class.</summary>
+            /// <param name="rootPath">Top directory.</param>
+            /// <param name="dirFilter">Search pattern.</param>
+            /// <param name="order">Output sorting.</param>
+            /// <param name="drawWith">Outline characters.</param>
+            /// <param name="tabSize">Number of characters to indent per level.</param>
             protected Vector (string rootPath, string dirFilter=null, Ordering order=Ordering.None, DrawWith drawWith=DrawWith.Ascii, int tabSize=4)
             {
                 this.stack = new QueuedStack<DirNode>();
@@ -68,7 +124,7 @@ namespace Kaos.SysIo
                 if (drawWith == DrawWith.Graphic)
                 { UpDown = '\u2502'; LeftRight = '\u2500'; UpRight = '\u2514'; UpDownRight = '\u251C'; }
                 else
-                { UpDown = '|'; LeftRight = '-'; UpRight = '\\'; UpDownRight = '+'; }
+                { UpDown = '|';      LeftRight = '-';      UpRight = '\\';     UpDownRight = '+'; }
 
                 if (order == Ordering.Lexical)
                 {
@@ -82,9 +138,9 @@ namespace Kaos.SysIo
                 }
             }
 
-
-            // On exit: returns true if node has subdirectories or files.
-            // Any subdirectories will be prefetched.
+            /// <summary>Prefetch next level of subdirectories and files.</summary>
+            /// <param name="fileFilter">Search pattern or *null* for all.</param>
+            /// <returns>Returns *true* if more subdirectories or files available, else *false*.</returns>
             protected bool PregetContents (string fileFilter)
             {
                 bool result;
@@ -164,7 +220,7 @@ namespace Kaos.SysIo
                 if (fileFilter == null)
                     fileFilter = "*";
 
-                for (var dv = new DirNode.Vector (rootPath, null, order); dv.Advance();)
+                for (var dv = new DirNode.Vector (rootPath, null, order); dv.Advance(); )
                 {
                     dv.PregetContents (fileFilter);
                     foreach (var fInfo in dv.Top.FileInfos)
@@ -172,21 +228,35 @@ namespace Kaos.SysIo
                 }
             }
 
-
+            /// <summary>Yield all subdirectories of the supplied path.</summary>
+            /// <param name="rootPath">Topmost directory.</param>
+            /// <param name="filter">Search pattern or *null* for all.</param>
+            /// <param name="order">Output sorting.</param>
+            /// <returns>All subdirectories of the supplied path as text.</returns>
             public static IEnumerable<string> EnumerateDirectories (string rootPath, string filter=null, Ordering order=Ordering.None)
             {
-                for (var dv = new DirNode.Vector (rootPath, filter, order); dv.Advance();)
+                for (var dv = new DirNode.Vector (rootPath, filter, order); dv.Advance(); )
                     yield return dv.Top.Path;
             }
 
-
+            /// <summary>Yield all subdirectories of the supplied path.</summary>
+            /// <param name="rootPath">Topmost directory.</param>
+            /// <param name="filter">Search pattern or *null* for all.</param>
+            /// <param name="order">Output sorting.</param>
+            /// <returns>All subdirectories of the supplied path as <see cref="DirectoryInfo"/> instances.</returns>
             public static IEnumerable<DirectoryInfo> EnumerateDirectoriesForInfo (string rootPath, string filter=null, Ordering order=Ordering.None)
             {
-                for (var dv = new DirNode.Vector (rootPath, filter, order); dv.Advance();)
+                for (var dv = new DirNode.Vector (rootPath, filter, order); dv.Advance(); )
                     yield return dv.Top.dirInfos[dv.Top.Index];
             }
 
-
+            /// <summary>Yield all subdirectories of the supplied path as a text outline.</summary>
+            /// <param name="rootPath">Topmost directory.</param>
+            /// <param name="filter">Search pattern or *null* for all.</param>
+            /// <param name="drawWith">Outline characters.</param>
+            /// <param name="order">Output sorting.</param>
+            /// <param name="tab">Number of characters to indent per level.</param>
+            /// <returns>All subdirectories of the supplied path as a text outline.</returns>
             public static IEnumerable<string> GenerateTextTree (string rootPath, string fileFilter, DrawWith drawWith=DrawWith.Graphic, Ordering order=Ordering.None, int tab=4)
             {
                 var sb = new StringBuilder();

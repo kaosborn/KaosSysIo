@@ -1,0 +1,15 @@
+name: build
+on: push
+jobs:
+  J1:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: Build library and executables
+      run: |
+        dotnet build -c Release SysIo
+        dotnet build -c Release ConTree
+        dotnet build -c Release Bench\DnBench01
+        dotnet build -c Release Bench\DwBench01

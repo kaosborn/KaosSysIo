@@ -17,11 +17,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwBench01", "Bench\DwBench0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysIo", "SysIo\SysIo.csproj", "{4EDD5948-A9B6-46EB-8C42-9F6D72E85B16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCore", "TestCore\TestCore.csproj", "{39880260-FAE3-44C6-A306-C32ADEA2ACAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCore", "TestCore\TestCore.csproj", "{39880260-FAE3-44C6-A306-C32ADEA2ACAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnBench01", "Bench\DnBench01\DnBench01.csproj", "{DFE40148-B6D9-42EA-925D-74B89A4B97DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DnBench01", "Bench\DnBench01\DnBench01.csproj", "{DFE40148-B6D9-42EA-925D-74B89A4B97DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConTree", "ConTree\ConTree.csproj", "{88CAD84D-5F41-4BC4-BFE6-E89ADB84A5FB}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ConMain", "Source\ConMain\ConMain.shproj", "{79E25D91-A8BA-4397-BED3-0C25D459B2A7}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -32,6 +34,8 @@ Global
 		Source\DirNode\DirNode.projitems*{4edd5948-a9b6-46eb-8c42-9f6d72e85b16}*SharedItemsImports = 5
 		Source\DirWalker\DirWalker.projitems*{4edd5948-a9b6-46eb-8c42-9f6d72e85b16}*SharedItemsImports = 5
 		Source\QueuedStack\QueuedStack.projitems*{4edd5948-a9b6-46eb-8c42-9f6d72e85b16}*SharedItemsImports = 5
+		Source\ConMain\ConMain.projitems*{79e25d91-a8ba-4397-bed3-0c25d459b2a7}*SharedItemsImports = 13
+		Source\ConMain\ConMain.projitems*{88cad84d-5f41-4bc4-bfe6-e89adb84a5fb}*SharedItemsImports = 4
 		Source\DirNode\DirNode.projitems*{88cad84d-5f41-4bc4-bfe6-e89adb84a5fb}*SharedItemsImports = 4
 		Source\QueuedStack\QueuedStack.projitems*{88cad84d-5f41-4bc4-bfe6-e89adb84a5fb}*SharedItemsImports = 4
 		Source\QueuedStack\QueuedStack.projitems*{99d95a7c-6862-48f2-b981-00bb150678d7}*SharedItemsImports = 13
@@ -75,6 +79,7 @@ Global
 		{99D95A7C-6862-48F2-B981-00BB150678D7} = {FB874B6F-C857-4231-8D0E-218ABE644E1E}
 		{B7001894-8B0B-4253-9E53-FEDFB2F4F7E4} = {DA25EB9A-C2EA-4C14-8C5B-253E2B8EA49C}
 		{DFE40148-B6D9-42EA-925D-74B89A4B97DC} = {DA25EB9A-C2EA-4C14-8C5B-253E2B8EA49C}
+		{79E25D91-A8BA-4397-BED3-0C25D459B2A7} = {FB874B6F-C857-4231-8D0E-218ABE644E1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6628448F-7DC1-446D-8583-95B09B2D9F53}

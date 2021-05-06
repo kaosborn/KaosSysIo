@@ -3,7 +3,7 @@
 // File: ConTree.cs
 //
 // Purpose: Provide alternative to Windows tree.exe console program:
-// - Adds option to sort naturally
+// - Adds options to sort lexically or naturally
 // - Adds option to produce static web page output
 // - Adds control over indention
 //
@@ -28,7 +28,7 @@ namespace AppMain
             DrawWith drawWith = DrawWith.Graphic;
             Ordering ordering = Ordering.None;
 
-            for (int ix = 0; ix < args.Length; ++ix)
+            for (var ix = 0; ix < args.Length; ++ix)
             {
                 var arg = args[ix];
                 if (arg == "/?")
@@ -86,7 +86,6 @@ namespace AppMain
             return 0;
         }
 
-
         static void ShowUsage()
         {
             string exe = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
@@ -98,7 +97,7 @@ namespace AppMain
             Console.WriteLine ("   /F   Display the names of the files in each folder.");
             Console.WriteLine ("   /A   Use ASCII instead of extended characters.");
             Console.WriteLine ("   /W   Produce output suitable for a static HTML web page.");
-            Console.WriteLine ("   /SL  Sort lexically (default).");
+            Console.WriteLine ("   /SL  Sort lexically.");
             Console.WriteLine ("   /SN  Sort naturally.");
             Console.WriteLine ("   /n   Indent by n where n is a number.");
         }

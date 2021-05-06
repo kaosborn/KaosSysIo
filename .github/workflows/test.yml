@@ -1,0 +1,17 @@
+name: test
+on: push
+jobs:
+  J1:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: Initialize
+      run: mkdir TestResults
+    - name: Run test suite
+      run: dotnet test -c Debug TestCore
+    - uses: actions/upload-artifact@v1
+      with:
+        name: KaosSysIo-Test
+        path: TestResults

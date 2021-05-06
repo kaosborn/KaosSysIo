@@ -11,11 +11,11 @@ namespace BenchApp
     {
         static void Main()
         {
-            foreach (var dx in new DirWalker (".."))
+            foreach (string dx in new DirWalker (".."))
             {
                 Console.WriteLine (dx);
-                foreach (var fx in Directory.EnumerateFiles (dx))
-                    Console.WriteLine ("  " + fx);
+                foreach (string fx in Directory.EnumerateFiles (dx))
+                    Console.WriteLine ($"  {fx}");
             }
         }
     }

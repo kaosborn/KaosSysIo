@@ -13,7 +13,7 @@ namespace Kaos.SysIo
     /// <summary>Provide iterator for directory traversal.</summary>
     public class DirWalker : IEnumerable<string>
     {
-        private string[] dirs;
+        private readonly string[] dirs;
         private int index;
 
         /// <summary>Generate names of subdirecties under the specified directory.</summary>
@@ -24,9 +24,13 @@ namespace Kaos.SysIo
         private DirWalker (string[] dirs)
          => this.dirs = dirs;
 
+        /// <summary>Returns an enumerator that iterates thru the collection.</summary>
+        /// <returns>An enumerator that can be used to iterate thru the collection.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
          => GetEnumerator();
 
+        /// <summary>Returns an enumerator that iterates thru the collection.</summary>
+        /// <returns>An enumerator that can be used to iterate thru the collection.</returns>
         public IEnumerator<string> GetEnumerator()
         {
             var stack = new Stack<DirWalker>();

@@ -2,7 +2,7 @@
 
 namespace Kaos.SysIo
 {
-    public static class Extensions
+    public static class TextExtensions
     {
         public static StringBuilder AppendIndent (this StringBuilder sb, DirNode.Vector dv, bool forFiles)
         {
@@ -13,20 +13,14 @@ namespace Kaos.SysIo
             for (var ix = 1; ix <= topIx; ++ix)
                 if (! forFiles && ix == topIx)
                 {
-                    if (dv[ix].IsLast)
-                        sb.Append (dv.UpRight);
-                    else
-                        sb.Append (dv.UpDownRight);
-                    for (int kk = 1; kk < dv.TabSize; ++kk)
+                    sb.Append (dv[ix].IsLast ? dv.UpRight : dv.UpDownRight);
+                    for (var jx = 1; jx < dv.TabSize; ++jx)
                         sb.Append (dv.LeftRight);
                 }
                 else
                 {
-                    if (dv[ix].IsLast)
-                        sb.Append (' ');
-                    else
-                        sb.Append (dv.UpDown);
-                    for (int kk = 1; kk < dv.TabSize; ++kk)
+                    sb.Append (dv[ix].IsLast ? ' ' : dv.UpDown);
+                    for (var jx = 1; jx < dv.TabSize; ++jx)
                         sb.Append (' ');
                 }
 

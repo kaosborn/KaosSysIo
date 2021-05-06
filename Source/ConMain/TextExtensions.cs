@@ -2,7 +2,7 @@
 
 namespace AppMain
 {
-    public static class EntensionsForHtml
+    public static class TextEntensions
     {
         public static StringBuilder AppendHtml (this StringBuilder sb, string source)
         {

@@ -17,13 +17,7 @@ namespace AppMain
             yield return "<!DOCTYPE html>";
             yield return "<html>";
             yield return "<head>";
-
-            var sb = new StringBuilder ("<title>");
-            sb.AppendHtml (rootPath);
-            sb.Append ("</title>");
-            yield return sb.ToString();
-            sb.Clear();
-
+            yield return $"<title>{rootPath}</title>";
             yield return "<meta charset=\"UTF-8\">";
             yield return "<style>";
             yield return "  button.bn { border-width:1px; padding:0px 2px; font-family:monospace; font-size:xx-small; color: red; background-color:black; border-color:red; }";
@@ -31,8 +25,7 @@ namespace AppMain
             yield return "  div.s2 { display:none; }";
             yield return "</style>";
             yield return "<script type=\"text/javascript\">";
-            yield return "function tgl(btn,divName)";
-            yield return "{";
+            yield return "function tgl(btn,divName) {";
             yield return "  var divId = document.getElementById(divName);";
             yield return "  if (divId.className == \"s1\")";
             yield return "  { divId.className = 's2'; btn.textContent = \"+\"; }";
@@ -44,6 +37,8 @@ namespace AppMain
             yield return "<body style='color:orange; background-color:black; font-family:monospace; font-size:medium; white-space:pre;'>";
 
             dv.Advance();
+
+            var sb = new StringBuilder();
             sb.AppendHtml (dv[0].Path);
             yield return sb.ToString();
             sb.Clear();

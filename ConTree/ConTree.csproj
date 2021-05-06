@@ -44,8 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConTree.cs" />
-    <Compile Include="DirVectorHtml.cs" />
-    <Compile Include="ExtensionsForHtml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,5 +51,6 @@
   </ItemGroup>
   <Import Project="..\Source\DirNode\DirNode.projitems" Label="Shared" />
   <Import Project="..\Source\QueuedStack\QueuedStack.projitems" Label="Shared" />
+  <Import Project="..\Source\ConMain\ConMain.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
