@@ -2,8 +2,14 @@
 
 namespace Kaos.SysIo
 {
+    /// <summary>Define extension methods for the *System.Text* namespace.</summary>
     public static class TextExtensions
     {
+        /// <summary>Appends an appropriate number of spaces to this instance.</summary>
+        /// <param name="sb">Instance to append to.</param>
+        /// <param name="dv">Path to a directory node.</param>
+        /// <param name="forFiles">*true* if files are output, else *false*.</param>
+        /// <returns>The <see cref="StringBuilder"/> instance.</returns>
         public static StringBuilder AppendIndent (this StringBuilder sb, DirNode.Vector dv, bool forFiles)
         {
             var topIx = dv.Count - 1;

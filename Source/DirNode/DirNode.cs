@@ -28,16 +28,16 @@ namespace Kaos.SysIo
         Graphic
     }
 
-    /// <summary>
-    /// A single directory node with its index in its parent's subdirs.
-    /// Root is always Index 0 of 1 FileInfo.
-    /// </summary>
+    /// <summary>Define a single directory node with its index in its parent's subdirectories.</summary>
+    /// <remarks>
+    /// *Root* is always Index 0 of 1 *FileInfo*.
+    /// </remarks>
     [DebuggerDisplay(@"\{{Path}}")]
     public class DirNode
     {
         private readonly DirectoryInfo[] dirInfos;
 
-        /// <summary>Offset into the *DirectoryInfo* collection.</summary>
+        /// <summary>Offset into the <see cref="DirectoryInfo"/> collection.</summary>
         public int Index { get; private set; }
 
         /// <summary>Collection of files in this directory.</summary>
@@ -85,7 +85,7 @@ namespace Kaos.SysIo
             /// <summary>Topmost directory.</summary>
             public string RootPath { get; private set; }
 
-            /// <summary>Indentation amount per level.</summary>
+            /// <summary>Indentation per level.</summary>
             public int TabSize { get; private set; }
 
             /// <summary>Vertical connector.</summary>
@@ -100,14 +100,13 @@ namespace Kaos.SysIo
             /// <summary>Left-T connector.</summary>
             public char UpDownRight { get; private set; }
 
-            /// <summary>Returns the element at the top of the stack without removing it.</summary>
+            /// <summary>Gets the element at the top of the stack without removing it.</summary>
             public DirNode Top => stack.Peek();
 
             /// <summary>Returns *true* if move levels, else *false*.</summary>
             public bool HasSubdirs => Depth + 1 < stack.TotalCount && stack[Depth + 1].dirInfos.Length > 0;
 
-
-            /// <summary>Initializes a new instance of the *DirNode.Vector* class.</summary>
+            /// <summary>Initializes a new instance of the <see cref="DirNode.Vector"/> class.</summary>
             /// <param name="rootPath">Top directory.</param>
             /// <param name="dirFilter">Search pattern.</param>
             /// <param name="order">Output sorting.</param>
@@ -172,13 +171,15 @@ namespace Kaos.SysIo
             }
 
 
+            /// <summary>Initialize the iterator.</summary>
             protected void Reset()
             {
                 stack.Clear();
                 stack.Push (new DirNode (new DirectoryInfo[] { new DirectoryInfo (RootPath) }, -1));
             }
 
-
+            /// <summary>Advance the iterator one position.</summary>
+            /// <returns>Returns *true* if not past end, else *false*.</returns>
             protected bool Advance()
             {
                 if (stack.TotalCount == 0)
@@ -214,7 +215,11 @@ namespace Kaos.SysIo
                 }
             }
 
-
+            /// <summary>Yield all subdirectories of the supplied path.</summary>
+            /// <param name="rootPath">Topmost directory.</param>
+            /// <param name="fileFilter">Search pattern or *null* for all.</param>
+            /// <param name="order">Output sorting.</param>
+            /// <returns>All subdirectories of the supplied path as text.</returns>
             public static IEnumerable<string> EnumerateFiles (string rootPath, string fileFilter=null, Ordering order=Ordering.None)
             {
                 if (fileFilter == null)
@@ -252,7 +257,7 @@ namespace Kaos.SysIo
 
             /// <summary>Yield all subdirectories of the supplied path as a text outline.</summary>
             /// <param name="rootPath">Topmost directory.</param>
-            /// <param name="filter">Search pattern or *null* for all.</param>
+            /// <param name="fileFilter">Search pattern or *null* for all.</param>
             /// <param name="drawWith">Outline characters.</param>
             /// <param name="order">Output sorting.</param>
             /// <param name="tab">Number of characters to indent per level.</param>

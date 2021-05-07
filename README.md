@@ -1,9 +1,9 @@
 # KaosSysIo
 
-<a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/Build.yml">
-<img src="https://github.com/kaosborn/KaosSysIo/workflows/Build/badge.svg"></a>
-<a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/Test.yml">
-<img src="https://github.com/kaosborn/KaosSysIo/workflows/Test/badge.svg"></a>
+<a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/build.yml">
+<img src="https://github.com/kaosborn/KaosSysIo/workflows/build/badge.svg"></a>
+<a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/test.yml">
+<img src="https://github.com/kaosborn/KaosSysIo/workflows/test/badge.svg"></a>
 
 ### Overview
 
@@ -37,13 +37,13 @@ tree2 [drive:][path] [/F] [/A] [/W] [/SL] [/SN] [/n]
 /n   Indent by n where n is a number.
 ```
 
-Not in `tree.exe` are the `/S`, `/W`, and `/n` switches.
+Not in Windows' `tree.exe` are the `/S`, `/W`, and `/n` switches.
 
 #### Example session 1
 
-The first example changes the indent from 4 to 2 with the `/2` switch.
+The first example changes the indent from 4 to 2 spaces with the `/2` switch.
 Files as well as folders are listed with the `/F` switch.
-ASCII characters are used for the outline by using the `/A` switch.
+ASCII characters are used for the outline by supplying the `/A` switch.
 
 ````
 T:\>tree2 T:\Unicode /A /F /2
@@ -70,9 +70,9 @@ T:\Unicode
 
 #### Example session 2
 
-The Windows `tree.exe` program produces results that are sorted however the file system happens to return them.
-The `tree2.exe` program duplicates this behavior.
-First, files on a FAT32 drive are listed with the `/F` switch.
+The Windows `tree.exe` program produces results that are sorted however the file system returns them.
+The `tree2.exe` program emulates this behavior.
+First, files on a FAT32 drive are listed with the `/F` switch:
 
 ```
 T:\>tree2.exe T:\Numbers /F
@@ -83,7 +83,7 @@ T:\Numbers
 ```
 
 Without sorting, the files are listed in a seemingly random order.
-Next, results are sorted naturally with the `/SN` switch.
+Next, a natural sort is applied to the results with the `/SN` switch:
 
 ```
 T:\>tree2.exe T:\Numbers /F /SN
@@ -95,8 +95,8 @@ T:\Numbers
 
 #### Example session 3
 
-This example produces a static web page.
-First, the `chcp` Windows command sets the shell's code page to UTF-8.
+This example produces a static web page
+after first seting the shell's code page to UTF-8 with the Windows `chcp` command.
 Then a web page with fully collapsible folders is produced with the `/W` switch.
 Lexical sorting is used for the hexidecimals with the `/SL` switch.
 
@@ -110,7 +110,7 @@ T:\>msedge.exe MyPage.html
 
 Browser output:
 
-![example output](/Images/contree-example-unicode-1.png)  
+![example 3](/Images/contree-example-unicode-1.png)  
 (All subfolders are expanded in this example.)
 
 ### Folder layout

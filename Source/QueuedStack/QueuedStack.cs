@@ -24,9 +24,9 @@ namespace Kaos.Collections
         public QueuedStack()
          => data = new List<T>();
 
-        /// <summary>Gets the element at the specified index.</summary>
+        /// <summary>Gets the element at the supplied index.</summary>
         /// <param name="index">The zero-based index of the element to get.</param>
-        /// <returns>The element at the specified index.</returns>
+        /// <returns>The element at the supplied index.</returns>
         public T this[int index]
          => data[index];
 
@@ -78,7 +78,7 @@ namespace Kaos.Collections
             ++Count;
         }
 
-        /// <summary>Appends the specified element onto the stack.</summary>
+        /// <summary>Appends the supplied element onto the stack.</summary>
         /// <param name="item">The element to push onto the stack.</param>
         public void Push (T item)
         {
@@ -89,7 +89,7 @@ namespace Kaos.Collections
             ++Count;
         }
 
-        /// <summary>Removes the element at the specified index of the queued stack.</summary>
+        /// <summary>Removes the element at the supplied index of the queued stack.</summary>
         /// <param name="index">The index of the element to remove.</param>
         /// <exception cref="InvalidOperationException">When index is out of range.</exception>
         public void RemoveAt (int index)

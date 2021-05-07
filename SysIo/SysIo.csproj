@@ -6,14 +6,26 @@
     <Version>0.7.0</Version>
     <Authors>Kasey O.</Authors>
     <Company>github.com/kaosborn</Company>
-    <Product>Kaos.SysIo</Product>
-    <PackageTags>generics collections stack queue directory walking traversal</PackageTags>
+    <Product>SysIo</Product>
+    <PackageTags>generics collections stack queue directory folder file walking traversal</PackageTags>
     <Description>Directory walking in .NET</Description>
     <Copyright>Copyright © 2009-2021 github.com/kaosborn</Copyright>
     <RepositoryUrl>https://github.com/kaosborn/KaosSysIo.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageProjectUrl>https://github.com/kaosborn/KaosSysIo</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\net5.0\SysIo.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
   <Import Project="..\Source\DirNode\DirNode.projitems" Label="Shared" />
 
