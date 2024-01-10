@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageId>Kaos.SysIo</PackageId>
-    <Version>0.7.0</Version>
+    <Version>0.7.0.1</Version>
     <Authors>Kasey O.</Authors>
     <Company>github.com/kaosborn</Company>
     <Product>SysIo</Product>
     <PackageTags>generics collections stack queue directory folder file walking traversal</PackageTags>
     <Description>Directory walking in .NET</Description>
-    <Copyright>Copyright © 2009-2021 github.com/kaosborn</Copyright>
+    <Copyright>Copyright © 2009-2024 github.com/kaosborn</Copyright>
     <RepositoryUrl>https://github.com/kaosborn/KaosSysIo.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageProjectUrl>https://github.com/kaosborn/KaosSysIo</PackageProjectUrl>
