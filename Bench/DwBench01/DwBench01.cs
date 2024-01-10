@@ -1,5 +1,5 @@
 ﻿// Program: DwBench01.exe
-// Purpose: Exercise the DirWalker class.
+// Purpose: Exercise the DirWalker class using .NET Framework 4.8.
 
 using System;
 using System.IO;

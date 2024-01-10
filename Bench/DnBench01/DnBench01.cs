@@ -1,5 +1,5 @@
 ﻿// Program: DnBench01.exe
-// Purpose: Demonstrate .NET Core usage of the DirNode class.
+// Purpose: Exercise the DirNode class using .NET 8.0+.
 
 using System;
 using Kaos.SysIo;

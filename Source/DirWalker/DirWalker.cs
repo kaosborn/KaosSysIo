@@ -1,9 +1,7 @@
-﻿//
-// Project: KaosSysIo
+﻿// Project: KaosSysIo
 // File:    DirWalker.cs
 // Purpose: Define lite alternative to the DirNode class.
-//          This is a minimal solution without many features present in DirNode.Vector.
-//
+//          This is a minimal directory traverser without many features present in DirNode.Vector.
 
 using System.Collections.Generic;
 using System.IO;
