@@ -1,4 +1,4 @@
-name: build
+name: Build
 on: push
 jobs:
   J1:
@@ -7,9 +7,16 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
-    - name: Build library and executables
+    - name: Initialize
+      run: md RunResults
+    - name: Build library
+      run: dotnet build -c Release SysIo
+    - name: Build executables
       run: |
-        dotnet build -c Release SysIo
         dotnet build -c Release ConTree
         dotnet build -c Release Bench\DnBench01
         dotnet build -c Release Bench\DwBench01
+    - name: Copy build artifacts
+      run: |
+          copy SysIo\bin\Release RunResults
+          copy ConTree\bin\Release\ConTree.exe RunResults\tree2.exe
