@@ -1,4 +1,4 @@
-name: build
+name: Build
 on: push
 jobs:
   J1:
@@ -20,3 +20,7 @@ jobs:
       run: |
           copy SysIo\bin\Release RunResults
           copy ConTree\bin\Release\ConTree.exe RunResults\tree2.exe
+    - uses: actions/upload-artifact@v1
+      with:
+        name: KaosSysIo-RunResults
+        path: RunResults

@@ -6,6 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.tmp
 
 # Build results
 [Dd]ebug/
@@ -18,15 +19,14 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+*.log
 
 # Visual Studio cache/options directory
 .vs/
 
-# MSTest test results
+# Test and run results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
-
-# Workflow results
 [Rr]un[Rr]esult*/
 
 # NuGet packages
