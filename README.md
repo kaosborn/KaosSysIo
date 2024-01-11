@@ -96,7 +96,7 @@ T:\Numbers
 #### Example session 3
 
 This example produces a static web page
-after first seting the shell's code page to UTF-8 with the Windows `chcp` command.
+after first setting the shell's code page to UTF-8 with the Windows `chcp` command.
 Then a web page with fully collapsible folders is produced with the `/W` switch.
 Lexical sorting is used for the hexidecimals with the `/SL` switch.
 
@@ -113,26 +113,23 @@ Browser output:
 ![example 3](/Images/contree-example-unicode-1.png)  
 (All subfolders are expanded in this example.)
 
-### Folder layout
+### Top-level folders
 
 This repository is a single Visual Studio solution with additional files in the root.
 
-* The `Bench` folder contains console programs that:
+* `Bench` - Contains console programs that:
 
   * Provide examples for documentation.
   * Exercise classes in this library.
 
-* The `ConTree` folder contains the build for the `tree2.exe` .NET console program.
-Targetting .NET Framework 4.8 produces an executable of only 23K.
-With the imminent .NET 6, this build will likely change.
+* `ConTree` - Contains the build for the `tree2.exe` .NET console program.
+Targeting .NET Framework 4.8 produces an executable of only 24K.
 
-* The `SysIo` folder builds a class library in the form of a `.nuget` file.
+* `SysIo` - Builds a class library in the form of a `.nuget` file.
 
-* The `Source` folder contains all library source code.
-All source is organized using shared projects for inclusion by other projects.
-The executables and the test project reference these shared projects.
+* `Source` - All source code in shared projects by class.
 
-* The `TestCore` folder contains a few unit tests.
+* `TestCore` - Contains a few unit tests.
 
 ### License
 

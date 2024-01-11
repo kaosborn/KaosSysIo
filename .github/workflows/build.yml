@@ -1,0 +1,26 @@
+name: Build
+on: push
+jobs:
+  J1:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: Initialize
+      run: md RunResults
+    - name: Build library
+      run: dotnet build -c Release SysIo
+    - name: Build executables
+      run: |
+        dotnet build -c Release ConTree
+        dotnet build -c Release Bench\DnBench01
+        dotnet build -c Release Bench\DwBench01
+    - name: Copy build artifacts
+      run: |
+          xcopy SysIo\bin\Release RunResults /E
+          copy ConTree\bin\Release\ConTree.exe RunResults\tree2.exe
+    - uses: actions/upload-artifact@v1
+      with:
+        name: KaosSysIo-RunResults
+        path: RunResults
