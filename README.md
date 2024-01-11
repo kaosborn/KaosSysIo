@@ -1,9 +1,9 @@
 # KaosSysIo
 
 <a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/build.yml">
-<img src="https://github.com/kaosborn/KaosSysIo/workflows/build/badge.svg"></a>
+<img src="https://github.com/kaosborn/KaosSysIo/workflows/Build/badge.svg"></a>
 <a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/test.yml">
-<img src="https://github.com/kaosborn/KaosSysIo/workflows/test/badge.svg"></a>
+<img src="https://github.com/kaosborn/KaosSysIo/workflows/Test/badge.svg"></a>
 
 ### Overview
 
