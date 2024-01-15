@@ -1,13 +1,32 @@
 # KaosSysIo
 
-<a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/build.yml">
+<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/build.yml">
 <img src="https://github.com/kaosborn/KaosSysIo/workflows/Build/badge.svg"></a>
-<a href="https://github.com/kaosborn/KaosSysIo/blob/master/.github/workflows/test.yml">
+<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml">
 <img src="https://github.com/kaosborn/KaosSysIo/workflows/Test/badge.svg"></a>
+
+<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test.yml">
+<img src="https://github.com/kaosborn/KaosSysIo/workflows/Test1/badge.svg"></a>
+
+<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/test">
+<img src="https://github.com/kaosborn/KaosSysIo/workflows/test.yml/badge.svg"></a>
+
+<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test">
+<img src="https://github.com/kaosborn/KaosSysIo/workflows/Test.yml/badge.svg"></a>
+
+XXX
+
+[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/Test/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
+[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/test/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
+[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/Test1/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
+[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/test1/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
+[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/Test.yml/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
+[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
+
 
 ### Overview
 
-The **KaosSysIo** repository is a .NET codebase that provides classes for traversing directories.
+The **KaosSysIo** repository contains a .NET codebase that provides classes for traversing directories.
 Included is the `tree2.exe` utility program that is an improved version
 of the Windows `tree.exe` console program.
 
@@ -21,7 +40,7 @@ Primary types included in this codebase are:
 ### `tree2.exe`
 
 The current build of `tree2.exe` targets .NET Framework 4.8.
-This is built in the `ConTree` project.
+This is the result of building the `ConTree` project.
 Copy this program to a directory in PATH for an improved version of Microsoft's `tree.exe` program.
 
 ```
@@ -70,7 +89,7 @@ T:\Unicode
 
 #### Example session 2
 
-The Windows `tree.exe` program produces results that are sorted however the file system returns them.
+The original `tree.exe` program produces results that are sorted however the file system returns them.
 The `tree2.exe` program emulates this behavior.
 First, files on a FAT32 drive are listed with the `/F` switch:
 
