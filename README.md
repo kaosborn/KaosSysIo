@@ -8,11 +8,17 @@
 <a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test.yml">
 <img src="https://github.com/kaosborn/KaosSysIo/workflows/Test1/badge.svg"></a>
 
+<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml">
+<img src="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test/badge.svg"></a>
+
+<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test.yml">
+<img src="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test1/badge.svg"></a>
+
 <a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/test">
-<img src="https://github.com/kaosborn/KaosSysIo/workflows/test.yml/badge.svg"></a>
+<img src="https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml/badge.svg"></a>
 
 <a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test">
-<img src="https://github.com/kaosborn/KaosSysIo/workflows/Test.yml/badge.svg"></a>
+<img src="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test.yml/badge.svg"></a>
 
 XXX
 
