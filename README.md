@@ -1,34 +1,8 @@
 # KaosSysIo
 
-<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/build.yml">
-<img src="https://github.com/kaosborn/KaosSysIo/workflows/Build/badge.svg"></a>
-<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml">
-<img src="https://github.com/kaosborn/KaosSysIo/workflows/Test/badge.svg"></a>
-
-<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test.yml">
-<img src="https://github.com/kaosborn/KaosSysIo/workflows/Test1/badge.svg"></a>
-
-<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml">
-<img src="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test/badge.svg"></a>
-
-<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test.yml">
-<img src="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test1/badge.svg"></a>
-
-<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/test">
-<img src="https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml/badge.svg"></a>
-
-<a href="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test">
-<img src="https://github.com/kaosborn/KaosSysIo/actions/workflows/Test.yml/badge.svg"></a>
-
-XXX
-
-[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/Test/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
-[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/test/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
-[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/Test1/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
-[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/test1/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
-[![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/Test.yml/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
 [![Test](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/test.yml)
-
+[![Build](https://github.com/kaosborn/KaosSysIo/actions/workflows/build.yml/badge.svg)](https://github.com/kaosborn/KaosSysIo/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kaosborn/Filebert/blob/master/LICENSE)
 
 ### Overview
 

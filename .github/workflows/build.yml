@@ -4,7 +4,7 @@ jobs:
   J1:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
       with:
         fetch-depth: 1
     - name: Initialize
@@ -20,7 +20,7 @@ jobs:
       run: |
           xcopy SysIo\bin\Release RunResults /E
           copy ConTree\bin\Release\ConTree.exe RunResults\tree2.exe
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v4
       with:
         name: KaosSysIo-RunResults
         path: RunResults

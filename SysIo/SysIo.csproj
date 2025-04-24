@@ -9,7 +9,7 @@
     <Product>SysIo</Product>
     <PackageTags>generics collections stack queue directory folder file walking traversal</PackageTags>
     <Description>Directory walking in .NET</Description>
-    <Copyright>Copyright © 2009-2024 github.com/kaosborn</Copyright>
+    <Copyright>Copyright © 2009-2025 github.com/kaosborn</Copyright>
     <RepositoryUrl>https://github.com/kaosborn/KaosSysIo.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageProjectUrl>https://github.com/kaosborn/KaosSysIo</PackageProjectUrl>
